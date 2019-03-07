@@ -3,7 +3,7 @@
     {
       "text": "%md\n# Imports",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.929",
+      "dateUpdated": "2019-03-07 13:18:06.818",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -36,14 +36,15 @@
       "jobName": "paragraph_1551959917928_-2047152211",
       "id": "20190306-164905_806501682",
       "dateCreated": "2019-03-07 12:58:37.928",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:06.851",
+      "dateFinished": "2019-03-07 13:18:09.185",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "import org.apache.spark.sql.DataFrame\nimport org.apache.spark.sql.types.{DoubleType, StringType}\nimport org.apache.spark.sql.{functions \u003d\u003e F}\nimport org.apache.spark.sql.expressions.Window\n\nimport scala.collection.mutable.{Map \u003d\u003e Map}\nimport java.io.File",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.931",
+      "dateUpdated": "2019-03-07 13:18:09.257",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -83,14 +84,15 @@
       "jobName": "paragraph_1551959917931_1729894821",
       "id": "20190306-164904_662424174",
       "dateCreated": "2019-03-07 12:58:37.931",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:09.291",
+      "dateFinished": "2019-03-07 13:18:09.429",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# Load Data",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.931",
+      "dateUpdated": "2019-03-07 13:18:09.491",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -123,14 +125,15 @@
       "jobName": "paragraph_1551959917931_1951283754",
       "id": "20190306-164752_576374256",
       "dateCreated": "2019-03-07 12:58:37.931",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:09.528",
+      "dateFinished": "2019-03-07 13:18:09.534",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Utility Functions",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.931",
+      "dateUpdated": "2019-03-07 13:18:09.628",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -163,14 +166,15 @@
       "jobName": "paragraph_1551959917931_-609866248",
       "id": "20190306-164757_669071174",
       "dateCreated": "2019-03-07 12:58:37.931",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:09.662",
+      "dateFinished": "2019-03-07 13:18:09.667",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "def getListOfFiles(directoryPath: String): List[String] \u003d {\n  val file \u003d new File(directoryPath)\n  file\n  .listFiles\n  .filter(_.isFile)\n  .map(_.getPath).toList\n}\n\n/* \n * Reads all CSV files in a directory passed as the first parameter\n * Returns MutableMap containing file name as a key and data represented by a data frame\n */\ndef readAllCsvFiles(directoryPath: String, separator: String, header: Boolean \u003d true): Map[String, DataFrame]  \u003d {\n  var dataFrameMap \u003d Map[String, DataFrame]()\n  // iteriraj po svim csv datotekama\n  for (filePath \u003c- getListOfFiles(directoryPath)) {\n    if (filePath.split(\u0027/\u0027).last.split(\u0027.\u0027)(1) \u003d\u003d \"csv\") {\n      val fileName \u003d filePath.split(\u0027/\u0027).last.split(\u0027.\u0027)(0)\n      println(fileName)\n      dataFrameMap +\u003d (fileName -\u003e spark.read.option(\"header\", header).option(\"sep\", separator).csv(filePath))\n      \n    }\n  }  \n  dataFrameMap\n}",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.931",
+      "dateUpdated": "2019-03-07 13:18:09.761",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -202,14 +206,15 @@
       "jobName": "paragraph_1551959917931_768053676",
       "id": "20190306-164757_1342303323",
       "dateCreated": "2019-03-07 12:58:37.931",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:09.787",
+      "dateFinished": "2019-03-07 13:18:10.835",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val dfs \u003d readAllCsvFiles(\"/home/deegloo_ml/Development/Dario/data/\", \",\", true)",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.932",
+      "dateUpdated": "2019-03-07 13:18:10.888",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -237,18 +242,38 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.11.221:4040/jobs/job?id\u003d0",
+            "http://192.168.11.221:4040/jobs/job?id\u003d1",
+            "http://192.168.11.221:4040/jobs/job?id\u003d2",
+            "http://192.168.11.221:4040/jobs/job?id\u003d3",
+            "http://192.168.11.221:4040/jobs/job?id\u003d4",
+            "http://192.168.11.221:4040/jobs/job?id\u003d5",
+            "http://192.168.11.221:4040/jobs/job?id\u003d6",
+            "http://192.168.11.221:4040/jobs/job?id\u003d7"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1551959917932_1197506",
       "id": "20190306-164757_1426814793",
       "dateCreated": "2019-03-07 12:58:37.932",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:10.932",
+      "dateFinished": "2019-03-07 13:18:14.219",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# Basic Statistics",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.932",
+      "dateUpdated": "2019-03-07 13:18:14.235",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -281,14 +306,15 @@
       "jobName": "paragraph_1551959917932_-1126055255",
       "id": "20190306-171914_222743983",
       "dateCreated": "2019-03-07 12:58:37.932",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:14.309",
+      "dateFinished": "2019-03-07 13:18:14.318",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "for((dfName, df) \u003c- dfs) {\n    println(dfName)\n    df.describe().show()\n}",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.932",
+      "dateUpdated": "2019-03-07 13:18:14.408",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -316,18 +342,38 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.11.221:4040/jobs/job?id\u003d8",
+            "http://192.168.11.221:4040/jobs/job?id\u003d9",
+            "http://192.168.11.221:4040/jobs/job?id\u003d10",
+            "http://192.168.11.221:4040/jobs/job?id\u003d11",
+            "http://192.168.11.221:4040/jobs/job?id\u003d12",
+            "http://192.168.11.221:4040/jobs/job?id\u003d13",
+            "http://192.168.11.221:4040/jobs/job?id\u003d14",
+            "http://192.168.11.221:4040/jobs/job?id\u003d15"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1551959917932_-1419904374",
       "id": "20190306-170414_1586353358",
       "dateCreated": "2019-03-07 12:58:37.932",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:14.455",
+      "dateFinished": "2019-03-07 13:18:44.712",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# Simple Visualisation",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.933",
+      "dateUpdated": "2019-03-07 13:18:44.786",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -360,14 +406,15 @@
       "jobName": "paragraph_1551959917932_-777006559",
       "id": "20190306-170248_241819322",
       "dateCreated": "2019-03-07 12:58:37.932",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:44.820",
+      "dateFinished": "2019-03-07 13:18:44.825",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "z.show(dfs(\"76004-dc_milk_test\"))",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:42.566",
+      "dateUpdated": "2019-03-07 13:18:44.920",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -382,12 +429,150 @@
         "results": {
           "0": {
             "graph": {
-              "mode": "stackedAreaChart",
+              "mode": "table",
               "height": 300.0,
               "optionOpen": false,
               "setting": {
                 "table": {
-                  "tableGridState": {},
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "_c0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "AnimalID",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "Date",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0.0,
+                          "direction": "desc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "DateOfExtraction",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "DaysSinceLastMilkTest",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "ME305",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "Milk",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "PCTF",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "PCTP",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "PEN",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "SCC",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "UniqueIdentifier",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
                   "tableColumnTypeState": {
                     "names": {
                       "_c0": "string",
@@ -470,18 +655,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.11.221:4040/jobs/job?id\u003d16"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1551959917933_-141900669",
       "id": "20190306-164757_942653620",
       "dateCreated": "2019-03-07 12:58:37.933",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:44.959",
+      "dateFinished": "2019-03-07 13:18:45.306",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "z.show(dfs(\"76004-dc_daily_milk\"))",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:42.683",
+      "dateUpdated": "2019-03-07 13:18:45.358",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -496,7 +694,7 @@
         "results": {
           "0": {
             "graph": {
-              "mode": "lineChart",
+              "mode": "table",
               "height": 300.0,
               "optionOpen": true,
               "setting": {
@@ -600,17 +798,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.11.221:4040/jobs/job?id\u003d17"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1551959917934_-728747298",
       "id": "20190306-164757_618108263",
       "dateCreated": "2019-03-07 12:58:37.935",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:45.387",
+      "dateFinished": "2019-03-07 13:18:45.680",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "z.show(dfs(\"31703-coop\"))",
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.936",
+      "dateUpdated": "2019-03-07 15:50:31.468",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -622,24 +834,381 @@
         "colWidth": 12.0,
         "editorMode": "ace/mode/scala",
         "fontSize": 9.0,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "id",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "supplier_id",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "herd_id",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "butterfat",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "coli",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "freeze_point",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0.0,
+                          "direction": "desc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "inhibitor",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "lactose",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "lpc",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "mun",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "other_solids",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "pi",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "pickup_date",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "producer_code",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "protein",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "sediment",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "sequence",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "solids_nonfat",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "somatic_cell_count",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "standard_plate_count",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "tank",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "temperature",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "ticket_number",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "weight",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "creation_date_time",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "last_updated_date_time",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "supplier_id": "string",
+                      "herd_id": "string",
+                      "butterfat": "string",
+                      "coli": "string",
+                      "freeze_point": "string",
+                      "inhibitor": "string",
+                      "lactose": "string",
+                      "lpc": "string",
+                      "mun": "string",
+                      "other_solids": "string",
+                      "pi": "string",
+                      "pickup_date": "string",
+                      "producer_code": "string",
+                      "protein": "string",
+                      "sediment": "string",
+                      "sequence": "string",
+                      "solids_nonfat": "string",
+                      "somatic_cell_count": "string",
+                      "standard_plate_count": "string",
+                      "tank": "string",
+                      "temperature": "string",
+                      "ticket_number": "string",
+                      "weight": "string",
+                      "creation_date_time": "string",
+                      "last_updated_date_time": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
         "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tsupplier_id\therd_id\tbutterfat\tcoli\tfreeze_point\tinhibitor\tlactose\tlpc\tmun\tother_solids\tpi\tpickup_date\tproducer_code\tprotein\tsediment\tsequence\tsolids_nonfat\tsomatic_cell_count\tstandard_plate_count\ttank\ttemperature\tticket_number\tweight\tcreation_date_time\tlast_updated_date_time\n18320927\t13543\t31703\t3.84\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-12 00:00:00\t3907\t3.14\tnull\t2108469703\t8.88\tnull\tnull\t2\tnull\tnull\t53980\t2019-02-13 07:01:16.661\t2019-02-13 07:01:16.661\n18320928\t13543\t31703\t3.85\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-12 00:00:00\t3907\t3.14\tnull\t2108469704\t8.85\tnull\tnull\t2\tnull\tnull\t52657\t2019-02-13 07:01:16.662\t2019-02-13 07:01:16.662\n18320935\t13543\t31703\t3.59\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.16\tnull\t2079840585\t8.88\tnull\tnull\t3\tnull\tnull\t54220\t2019-02-13 07:01:16.669\t2019-02-13 07:01:16.669\n18320933\t13543\t31703\t3.69\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.08\tnull\t2079840553\t8.85\tnull\tnull\t2\tnull\tnull\t54360\t2019-02-13 07:01:16.666\t2019-02-13 07:01:16.666\n18320934\t13543\t31703\t4.06\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.24\tnull\t2079840584\t8.99\tnull\tnull\t3\tnull\tnull\t54205\t2019-02-13 07:01:16.668\t2019-02-13 07:01:16.668\n18284793\t13543\t31703\t3.59\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.16\tnull\t2079840583\t8.87\tnull\tnull\t3\tnull\tnull\t53480\t2019-02-12 07:01:41.762\t2019-02-13 07:01:16.667\n18320930\t13543\t31703\t3.88\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.16\tnull\t2079840522\t8.89\tnull\tnull\t1\tnull\tnull\t54580\t2019-02-13 07:01:16.664\t2019-02-13 07:01:16.664\n18320929\t13543\t31703\t3.89\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.15\tnull\t2079840521\t8.86\tnull\tnull\t1\tnull\tnull\t55740\t2019-02-13 07:01:16.663\t2019-02-13 07:01:16.663\n18320931\t13543\t31703\t4.02\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.21\tnull\t2079840523\t8.96\tnull\tnull\t1\tnull\tnull\t51739\t2019-02-13 07:01:16.664\t2019-02-13 07:01:16.664\n18320932\t13543\t31703\t3.69\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-11 00:00:00\t3907\t3.08\tnull\t2079840552\t8.82\tnull\tnull\t2\tnull\tnull\t52759\t2019-02-13 07:01:16.665\t2019-02-13 07:01:16.665\n18284796\t13543\t31703\t3.58\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.08\tnull\t2051211401\t8.84\tnull\tnull\t2\tnull\tnull\t53500\t2019-02-12 07:01:41.783\t2019-02-13 07:01:16.673\n18284795\t13543\t31703\t3.72\t10\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.2\tnull\t2051211371\t8.94\t190\tnull\t1\tnull\tnull\t53079\t2019-02-12 07:01:41.774\t2019-02-13 07:01:16.671\n18284799\t13543\t31703\t3.79\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.16\tnull\t2051211433\t8.95\t200\tnull\t3\tnull\tnull\t51179\t2019-02-12 07:01:41.794\t2019-02-13 07:01:16.676\n18284794\t13543\t31703\t3.71\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.2\tnull\t2051211370\t8.95\tnull\tnull\t1\tnull\tnull\t53459\t2019-02-12 07:01:41.77\t2019-02-13 07:01:16.67\n18284798\t13543\t31703\t3.83\t220\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.18\tnull\t2051211432\t8.92\tnull\tnull\t3\tnull\tnull\t51960\t2019-02-12 07:01:41.79\t2019-02-13 07:01:16.675\n18284797\t13543\t31703\t3.58\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.09\tnull\t2051211402\t8.85\tnull\tnull\t2\tnull\tnull\t53839\t2019-02-12 07:01:41.785\t2019-02-13 07:01:16.674\n18284800\t13543\t31703\t3.81\t10\tnull\tnull\t4.69\t140\tnull\tnull\tnull\t2019-02-10 00:00:00\t3907\t3.16\tnull\t2051211434\t8.92\tnull\t6000\t3\tnull\tnull\t57320\t2019-02-12 07:01:41.795\t2019-02-13 07:01:16.677\n18253848\t13543\t31703\t3.79\t20\tnull\tnull\t4.73\t70\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.15\tnull\t1421370110\t8.95\t230\t18000\t3\tnull\tnull\t56220\t2019-02-11 07:01:45.471\t2019-02-13 07:01:16.689\n18253845\t13543\t31703\t3.94\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.17\tnull\t1421370080\t8.94\tnull\tnull\t2\tnull\tnull\t53560\t2019-02-11 07:01:45.468\t2019-02-13 07:01:16.685\n18253844\t13543\t31703\t3.98\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.18\tnull\t1421370051\t8.96\tnull\tnull\t1\tnull\tnull\t52519\t2019-02-11 07:01:45.466\t2019-02-13 07:01:16.682\n18253843\t13543\t31703\t3.93\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.2\tnull\t1421370050\t8.98\tnull\tnull\t1\tnull\tnull\t55260\t2019-02-11 07:01:45.465\t2019-02-13 07:01:16.681\n18238678\t13543\t31703\t3.62\tnull\tnull\tnull\t4.68\t80\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.09\tnull\t1421370048\t8.83\tnull\t19000\t1\tnull\tnull\t54120\t2019-02-10 07:01:44.437\t2019-02-13 07:01:16.679\n18238680\t13543\t31703\t3.93\t10\tnull\tnull\t4.7\t80\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.16\tnull\t1421370079\t8.93\t240\t17000\t2\tnull\tnull\t53059\t2019-02-10 07:01:44.439\t2019-02-13 07:01:16.683\n18253847\t13543\t31703\t3.89\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.13\tnull\t1421370082\t8.85\tnull\tnull\t2\tnull\tnull\t5282\t2019-02-11 07:01:45.47\t2019-02-13 07:01:16.687\n18253846\t13543\t31703\t3.9\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.13\tnull\t1421370081\t8.85\tnull\tnull\t2\tnull\tnull\t53530\t2019-02-11 07:01:45.469\t2019-02-13 07:01:16.686\n18253849\t13543\t31703\t3.5\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.1\tnull\t1421370111\t8.83\tnull\tnull\t3\tnull\tnull\t53839\t2019-02-11 07:01:45.471\t2019-02-13 07:01:16.69\n18238679\t13543\t31703\t3.61\tnull\tnull\tnull\t4.67\t30\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.1\tnull\t1421370049\t8.82\tnull\t12000\t1\tnull\tnull\t54959\t2019-02-10 07:01:44.438\t2019-02-13 07:01:16.68\n18253850\t13543\t31703\t3.51\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-09 00:00:00\t3907\t3.09\tnull\t1421370112\t8.81\tnull\tnull\t3\tnull\tnull\t53159\t2019-02-11 07:01:45.472\t2019-02-13 07:01:16.691\n18238683\t13543\t31703\t3.62\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.14\tnull\t1392740928\t8.9\tnull\tnull\t2\tnull\tnull\t53140\t2019-02-10 07:01:44.441\t2019-02-13 07:01:16.695\n18238682\t13543\t31703\t3.72\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.17\tnull\t1392740898\t8.93\tnull\tnull\t1\tnull\tnull\t54300\t2019-02-10 07:01:44.44\t2019-02-13 07:01:16.694\n18238687\t13543\t31703\t3.87\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.14\tnull\t1392740962\t8.9\tnull\tnull\t3\tnull\tnull\t56120\t2019-02-10 07:01:44.446\t2019-02-13 07:01:16.702\n18238686\t13543\t31703\t3.6\tnull\tnull\tnull\t4.62\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.05\tnull\t1392740961\t8.73\tnull\tnull\t3\tnull\tnull\t54220\t2019-02-10 07:01:44.445\t2019-02-13 07:01:16.701\n18211986\t13543\t31703\t3.85\t10\tnull\tnull\t4.7\t40\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.14\tnull\t1392740959\t8.92\tnull\t10000\t3\tnull\tnull\t50959\t2019-02-09 07:01:42.541\t2019-02-13 07:01:16.698\n18238681\t13543\t31703\t3.73\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.17\tnull\t1392740897\t8.93\tnull\tnull\t1\tnull\tnull\t53960\t2019-02-10 07:01:44.439\t2019-02-13 07:01:16.693\n18238685\t13543\t31703\t3.63\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.08\tnull\t1392740960\t8.76\tnull\tnull\t3\tnull\tnull\t54920\t2019-02-10 07:01:44.444\t2019-02-13 07:01:16.699\n18238684\t13543\t31703\t3.62\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-08 00:00:00\t3907\t3.14\tnull\t1392740929\t8.9\tnull\tnull\t2\tnull\tnull\t53059\t2019-02-10 07:01:44.442\t2019-02-13 07:01:16.697\n18211988\t13543\t31703\t3.64\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.14\tnull\t1364111747\t8.89\tnull\tnull\t1\tnull\tnull\t53960\t2019-02-09 07:01:42.542\t2019-02-13 07:01:16.704\n18211990\t13543\t31703\t3.81\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.14\tnull\t1364111778\t8.87\tnull\tnull\t2\tnull\tnull\t53820\t2019-02-09 07:01:42.544\t2019-02-13 07:01:16.707\n18211991\t13543\t31703\t3.87\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.16\tnull\t1364111779\t8.88\tnull\tnull\t2\tnull\tnull\t53479\t2019-02-09 07:01:42.545\t2019-02-13 07:01:16.708\n18211992\t13543\t31703\t3.52\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.11\tnull\t1364111808\t8.86\tnull\tnull\t3\tnull\tnull\t53260\t2019-02-09 07:01:42.546\t2019-02-13 07:01:16.709\n18211993\t13543\t31703\t3.52\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.07\tnull\t1364111809\t8.8\tnull\tnull\t3\tnull\tnull\t54200\t2019-02-09 07:01:42.546\t2019-02-13 07:01:16.71\n18211987\t13543\t31703\t3.63\t60\tnull\tnull\t4.68\t10\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.15\tnull\t1364111746\t8.89\tnull\t8000\t1\tnull\tnull\t54780\t2019-02-09 07:01:42.542\t2019-02-13 07:01:16.703\n18211989\t13543\t31703\t3.87\tnull\tnull\tnull\t4.68\t80\tnull\tnull\tnull\t2019-02-07 00:00:00\t3907\t3.17\tnull\t1364111777\t8.91\tnull\t11000\t2\tnull\tnull\t52940\t2019-02-09 07:01:42.543\t2019-02-13 07:01:16.705\n18180797\t13543\t31703\t3.71\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.18\tnull\t1335482659\t8.93\tnull\tnull\t3\tnull\tnull\t53440\t2019-02-08 07:01:44.846\t2019-02-13 07:01:16.723\n18180791\t13543\t31703\t3.78\tnull\tnull\tnull\t4.73\t60\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.11\tnull\t1335482595\t8.91\tnull\t8000\t1\tnull\tnull\t53640\t2019-02-08 07:01:44.834\t2019-02-13 07:01:16.712\n18180798\t13543\t31703\t3.71\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.14\tnull\t1335482660\t8.88\tnull\tnull\t3\tnull\tnull\t53280\t2019-02-08 07:01:44.856\t2019-02-13 07:01:16.725\n18180795\t13543\t31703\t3.6\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.15\tnull\t1335482626\t8.89\tnull\tnull\t2\tnull\tnull\t54319\t2019-02-08 07:01:44.839\t2019-02-13 07:01:16.717\n18147243\t13543\t31703\t3.71\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.17\tnull\t1335482658\t8.91\tnull\tnull\t3\tnull\tnull\t53580\t2019-02-07 07:03:06.206\t2019-02-13 07:01:16.722\n18147242\t13543\t31703\t3.71\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.13\tnull\t1335482657\t8.87\tnull\tnull\t3\tnull\tnull\t53960\t2019-02-07 07:03:06.205\t2019-02-13 07:01:16.72\n18211994\t13543\t31703\t3.82\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.14\tnull\t1335482628\t8.87\tnull\tnull\t2\tnull\tnull\t52740\t2019-02-09 07:01:42.555\t2019-02-13 07:01:16.719\n18180796\t13543\t31703\t3.6\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.14\tnull\t1335482627\t8.87\tnull\tnull\t2\tnull\tnull\t52839\t2019-02-08 07:01:44.841\t2019-02-13 07:01:16.718\n18180792\t13543\t31703\t3.84\tnull\tnull\tnull\t4.68\t60\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.16\tnull\t1335482596\t8.9\tnull\t12000\t1\tnull\tnull\t53820\t2019-02-08 07:01:44.835\t2019-02-13 07:01:16.713\n18180793\t13543\t31703\t3.79\tnull\tnull\tnull\t4.73\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.12\tnull\t1335482597\t8.93\tnull\tnull\t1\tnull\tnull\t54420\t2019-02-08 07:01:44.837\t2019-02-13 07:01:16.714\n18180794\t13543\t31703\t3.83\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-02-06 00:00:00\t3907\t3.16\tnull\t1335482598\t8.92\tnull\tnull\t1\tnull\tnull\t57020\t2019-02-08 07:01:44.838\t2019-02-13 07:01:16.715\n18113836\t13543\t31703\t3.69\t20\tnull\tnull\t4.72\t70\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.08\tnull\t1306853444\t8.86\t190\t4000\t1\tnull\tnull\t54440\t2019-02-06 07:02:25.305\t2019-02-13 07:01:16.726\n18147249\t13543\t31703\t3.62\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.15\tnull\t1306853506\t8.91\tnull\tnull\t3\tnull\tnull\t52640\t2019-02-07 07:03:06.212\t2019-02-13 07:01:16.734\n18147246\t13543\t31703\t4.03\tnull\tnull\tnull\t4.71\t50\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.22\tnull\t1306853475\t9\tnull\t6000\t2\tnull\tnull\t51880\t2019-02-07 07:03:06.21\t2019-02-13 07:01:16.73\n18147250\t13543\t31703\t3.62\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.15\tnull\t1306853507\t8.89\tnull\tnull\t3\tnull\tnull\t54639\t2019-02-07 07:03:06.213\t2019-02-13 07:01:16.735\n18147247\t13543\t31703\t3.72\tnull\tnull\tnull\t4.61\t60\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.15\tnull\t1306853476\t8.82\tnull\t3000\t2\tnull\tnull\t53520\t2019-02-07 07:03:06.21\t2019-02-13 07:01:16.731\n18147248\t13543\t31703\t3.71\t20\tnull\tnull\t4.63\t90\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.15\tnull\t1306853477\t8.85\t220\t32000\t2\tnull\tnull\t53159\t2019-02-07 07:03:06.211\t2019-02-13 07:01:16.733\n18147244\t13543\t31703\t3.68\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.09\tnull\t1306853445\t8.84\tnull\tnull\t1\tnull\tnull\t54479\t2019-02-07 07:03:06.208\t2019-02-13 07:01:16.727\n18147245\t13543\t31703\t3.72\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-05 00:00:00\t3907\t3.19\tnull\t1306853446\t8.92\tnull\tnull\t1\tnull\tnull\t52519\t2019-02-07 07:03:06.209\t2019-02-13 07:01:16.729\n18113838\t13543\t31703\t3.76\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.12\tnull\t1278224294\t8.83\tnull\tnull\t1\tnull\tnull\t54120\t2019-02-06 07:02:25.307\t2019-02-13 07:01:16.738\n18113844\t13543\t31703\t3.91\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.2\tnull\t1278224357\t8.95\tnull\tnull\t3\tnull\tnull\t52704\t2019-02-06 07:02:25.313\t2019-02-13 07:01:16.747\n18113843\t13543\t31703\t3.77\t20\tnull\tnull\t4.68\t80\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.12\tnull\t1278224356\t8.86\tnull\t16000\t3\tnull\tnull\t54960\t2019-02-06 07:02:25.312\t2019-02-13 07:01:16.746\n18113839\t13543\t31703\t3.73\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.18\tnull\t1278224295\t8.91\tnull\tnull\t1\tnull\tnull\t55520\t2019-02-06 07:02:25.307\t2019-02-13 07:01:16.739\n18113840\t13543\t31703\t3.61\tnull\tnull\tnull\t4.65\t90\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.12\tnull\t1278224324\t8.84\t200\t37000\t2\tnull\tnull\t52960\t2019-02-06 07:02:25.308\t2019-02-13 07:01:16.741\n18113842\t13543\t31703\t4.04\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.22\tnull\t1278224326\t9\tnull\tnull\t2\tnull\tnull\t54580\t2019-02-06 07:02:25.31\t2019-02-13 07:01:16.743\n18078818\t13543\t31703\t3.77\tnull\tnull\tnull\t4.66\t50\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.14\tnull\t1278224355\t8.86\tnull\t12000\t3\tnull\tnull\t57660\t2019-02-05 07:01:40.216\t2019-02-13 07:01:16.745\n18113841\t13543\t31703\t3.6\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.11\tnull\t1278224325\t8.84\tnull\tnull\t2\tnull\tnull\t53500\t2019-02-06 07:02:25.309\t2019-02-13 07:01:16.742\n18113837\t13543\t31703\t3.75\tnull\tnull\tnull\t4.67\t30\tnull\tnull\tnull\t2019-02-04 00:00:00\t3907\t3.13\tnull\t1278224293\t8.87\t200\t24000\t1\tnull\tnull\t53200\t2019-02-06 07:02:25.306\t2019-02-13 07:01:16.737\n18078821\t13543\t31703\t3.52\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.09\tnull\t1249595174\t8.79\tnull\tnull\t2\tnull\tnull\t52840\t2019-02-05 07:01:40.22\t2019-02-13 07:01:16.753\n18078822\t13543\t31703\t3.52\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.13\tnull\t1249595204\t8.88\tnull\tnull\t3\tnull\tnull\t53840\t2019-02-05 07:01:40.221\t2019-02-13 07:01:16.756\n18078823\t13543\t31703\t3.52\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.14\tnull\t1249595205\t8.87\tnull\tnull\t3\tnull\tnull\t53500\t2019-02-05 07:01:40.222\t2019-02-13 07:01:16.758\n18078824\t13543\t31703\t3.91\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.2\tnull\t1249595206\t8.96\tnull\tnull\t3\tnull\tnull\t54100\t2019-02-05 07:01:40.223\t2019-02-13 07:01:16.759\n18320936\t13543\t31703\t4.02\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.16\tnull\t1249595176\t8.95\tnull\tnull\t2\tnull\tnull\t53060\t2019-02-13 07:01:16.755\t2019-02-13 07:01:16.755\n18078820\t13543\t31703\t3.71\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.14\tnull\t1249595143\t8.85\tnull\tnull\t1\tnull\tnull\t54920\t2019-02-05 07:01:40.218\t2019-02-13 07:01:16.75\n18055196\t13543\t31703\t3.54\tnull\tnull\tnull\t4.63\t10\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.09\tnull\t1249595173\t8.77\tnull\t1000\t2\tnull\tnull\t54080\t2019-02-04 07:01:39.504\t2019-02-13 07:01:16.751\n18078819\t13543\t31703\t3.7\tnull\tnull\tnull\t4.63\t60\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.14\tnull\t1249595142\t8.85\tnull\t41000\t1\tnull\tnull\t53480\t2019-02-05 07:01:40.217\t2019-02-13 07:01:16.749\n18113845\t13543\t31703\t4.01\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-02-03 00:00:00\t3907\t3.16\tnull\t1249595175\t8.96\tnull\tnull\t2\tnull\tnull\t53560\t2019-02-06 07:02:25.318\t2019-02-13 07:01:16.754\n18055197\t13543\t31703\t3.82\t20\tnull\tnull\t4.67\t100\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.11\tnull\t1220965991\t8.86\tnull\t17000\t1\tnull\tnull\t53580\t2019-02-04 07:01:39.504\t2019-02-13 07:01:16.76\n18034281\t13543\t31703\t3.52\t90\tnull\tnull\t4.64\t70\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.11\tnull\t1220966053\t8.82\t210\t8000\t3\tnull\tnull\t53300\t2019-02-03 07:01:35.07\t2019-02-13 07:01:16.769\n18055503\t13543\t31703\t4.01\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.16\tnull\t1220966024\t8.96\tnull\tnull\t2\tnull\tnull\t5357\t2019-02-04 07:01:39.51\t2019-02-11 07:01:45.546\n18055198\t13543\t31703\t3.69\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.11\tnull\t1220965992\t8.89\tnull\tnull\t1\tnull\tnull\t53700\t2019-02-04 07:01:39.505\t2019-02-13 07:01:16.762\n18055199\t13543\t31703\t3.82\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.09\tnull\t1220965993\t8.83\tnull\tnull\t1\tnull\tnull\t54480\t2019-02-04 07:01:39.506\t2019-02-13 07:01:16.763\n18055200\t13543\t31703\t3.7\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.12\tnull\t1220965994\t8.91\tnull\tnull\t1\tnull\tnull\t54120\t2019-02-04 07:01:39.507\t2019-02-13 07:01:16.764\n18055502\t13543\t31703\t3.72\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.17\tnull\t1220966023\t8.9\tnull\tnull\t2\tnull\tnull\t54760\t2019-02-04 07:01:39.509\t2019-02-13 07:01:16.767\n18055501\t13543\t31703\t3.72\t10\tnull\tnull\t4.65\t160\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.17\tnull\t1220966022\t8.9\tnull\t13000\t2\tnull\tnull\t52260\t2019-02-04 07:01:39.508\t2019-02-13 07:01:16.766\n18055504\t13543\t31703\t3.52\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.1\tnull\t1220966054\t8.81\tnull\tnull\t3\tnull\tnull\t53840\t2019-02-04 07:01:39.512\t2019-02-13 07:01:16.77\n18055505\t13543\t31703\t3.86\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-02-02 00:00:00\t3907\t3.19\tnull\t1220966055\t8.97\tnull\tnull\t3\tnull\tnull\t54420\t2019-02-04 07:01:39.513\t2019-02-13 07:01:16.771\n18034283\t13543\t31703\t3.78\t20\tnull\tnull\t4.67\t90\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.17\tnull\t1192336841\t8.93\t190\t17000\t1\tnull\tnull\t53820\t2019-02-03 07:01:35.072\t2019-02-13 07:01:16.774\n18034284\t13543\t31703\t3.83\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.14\tnull\t1192336873\t8.87\tnull\tnull\t2\tnull\tnull\t53860\t2019-02-03 07:01:35.075\t2019-02-13 07:01:16.778\n18008707\t13543\t31703\t3.48\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.05\tnull\t1192336872\t8.75\tnull\tnull\t2\tnull\tnull\t52960\t2019-02-02 07:01:37.825\t2019-02-13 07:01:16.777\n18008706\t13543\t31703\t3.5\t40\tnull\tnull\t4.62\t30\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.05\tnull\t1192336871\t8.74\t200\t1000\t2\tnull\tnull\t54680\t2019-02-02 07:01:37.824\t2019-02-13 07:01:16.776\n18034285\t13543\t31703\t3.83\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.14\tnull\t1192336874\t8.9\tnull\tnull\t2\tnull\tnull\t52920\t2019-02-03 07:01:35.076\t2019-02-13 07:01:16.78\n18034287\t13543\t31703\t3.58\t30\tnull\tnull\t4.67\t40\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.09\tnull\t1192336903\t8.83\t190\t7000\t3\tnull\tnull\t54320\t2019-02-03 07:01:35.078\t2019-02-13 07:01:16.783\n18034286\t13543\t31703\t3.58\tnull\tnull\tnull\t4.65\t70\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.08\tnull\t1192336902\t8.8\tnull\t6000\t3\tnull\tnull\t53300\t2019-02-03 07:01:35.077\t2019-02-13 07:01:16.781\n18034288\t13543\t31703\t3.85\tnull\tnull\tnull\t4.68\t40\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.2\tnull\t1192336904\t8.97\t210\t18000\t3\tnull\tnull\t54280\t2019-02-03 07:01:35.079\t2019-02-13 07:01:16.784\n18034282\t13543\t31703\t3.8\t20\tnull\tnull\t4.68\t100\tnull\tnull\tnull\t2019-02-01 00:00:00\t3907\t3.19\tnull\t1192336840\t8.95\tnull\t4000\t1\tnull\tnull\t54400\t2019-02-03 07:01:35.071\t2019-02-13 07:01:16.773\n17979930\t13543\t31703\t3.72\t20\tnull\tnull\t4.68\t90\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.13\tnull\t1367335112\t8.9\tnull\t7000\t3\tnull\tnull\t54560\t2019-02-01 07:01:37.668\t2019-02-13 07:01:16.792\n18148501\t13543\t31703\t3.79\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.1\tnull\t1367335052\t8.86\tnull\tnull\t1\tnull\tnull\t54400\t2019-02-07 07:03:06.26\t2019-02-13 07:01:16.788\n18008714\t13543\t31703\t3.65\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.15\tnull\t1367335115\t8.88\tnull\tnull\t3\tnull\tnull\t53180\t2019-02-02 07:01:37.832\t2019-02-13 07:01:16.796\n18008713\t13543\t31703\t3.74\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.14\tnull\t1367335114\t8.9\tnull\tnull\t3\tnull\tnull\t53120\t2019-02-02 07:01:37.832\t2019-02-13 07:01:16.795\n18008712\t13543\t31703\t3.66\t30\tnull\tnull\t4.65\t100\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.15\tnull\t1367335113\t8.88\tnull\t7000\t3\tnull\tnull\t53620\t2019-02-02 07:01:37.831\t2019-02-13 07:01:16.794\n18008711\t13543\t31703\t3.62\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.12\tnull\t1367335082\t8.85\tnull\tnull\t2\tnull\tnull\t52800\t2019-02-02 07:01:37.829\t2019-02-13 07:01:16.791\n18008710\t13543\t31703\t3.62\tnull\tnull\tnull\t4.65\t60\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.1\tnull\t1367335081\t8.82\tnull\t14000\t2\tnull\tnull\t53980\t2019-02-02 07:01:37.828\t2019-02-13 07:01:16.789\n18008709\t13543\t31703\t3.59\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.09\tnull\t1367335051\t8.85\tnull\tnull\t1\tnull\tnull\t53380\t2019-02-02 07:01:37.827\t2019-02-13 07:01:16.787\n18008708\t13543\t31703\t3.58\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-31 00:00:00\t3907\t3.09\tnull\t1367335050\t8.83\tnull\tnull\t1\tnull\tnull\t54460\t2019-02-02 07:01:37.826\t2019-02-13 07:01:16.785\n17979934\t13543\t31703\t3.79\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.1\tnull\t1338705902\t8.86\tnull\tnull\t1\tnull\tnull\t54399\t2019-02-01 07:01:37.671\t2019-02-06 07:02:25.359\n17979931\t13543\t31703\t3.76\t20\tnull\tnull\t4.66\t30\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.16\tnull\t1338705899\t8.9\tnull\t23000\t1\tnull\tnull\t54040\t2019-02-01 07:01:37.668\t2019-02-13 07:01:16.798\n17979938\t13543\t31703\t3.4\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.04\tnull\t1338705962\t8.78\tnull\tnull\t3\tnull\tnull\t53900\t2019-02-01 07:01:37.677\t2019-02-13 07:01:16.809\n17979937\t13543\t31703\t3.41\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.05\tnull\t1338705961\t8.81\tnull\tnull\t3\tnull\tnull\t53360\t2019-02-01 07:01:37.676\t2019-02-13 07:01:16.807\n17979936\t13543\t31703\t3.85\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.14\tnull\t1338705933\t8.9\tnull\tnull\t2\tnull\tnull\t53100\t2019-02-01 07:01:37.675\t2019-02-13 07:01:16.806\n17979935\t13543\t31703\t3.85\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.13\tnull\t1338705932\t8.88\tnull\tnull\t2\tnull\tnull\t53680\t2019-02-01 07:01:37.674\t2019-02-13 07:01:16.804\n17979933\t13543\t31703\t3.79\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.1\tnull\t1338705901\t8.85\tnull\tnull\t1\tnull\tnull\t55300\t2019-02-01 07:01:37.67\t2019-02-13 07:01:16.8\n17979932\t13543\t31703\t3.77\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.15\tnull\t1338705900\t8.89\tnull\tnull\t1\tnull\tnull\t54460\t2019-02-01 07:01:37.669\t2019-02-13 07:01:16.799\n17951097\t13543\t31703\t3.64\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.12\tnull\t1338705931\t8.82\tnull\tnull\t2\tnull\tnull\t52800\t2019-01-31 07:01:40.48\t2019-02-13 07:01:16.803\n17951096\t13543\t31703\t3.65\tnull\tnull\tnull\t4.62\tnull\tnull\tnull\tnull\t2019-01-30 00:00:00\t3907\t3.12\tnull\t1338705930\t8.81\tnull\tnull\t2\tnull\tnull\t53760\t2019-01-31 07:01:40.48\t2019-02-13 07:01:16.802\n17951252\t13543\t31703\t3.57\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.1\tnull\t708864641\t8.82\tnull\tnull\t3\tnull\tnull\t53620\t2019-01-31 07:01:40.487\t2019-02-13 07:01:16.818\n17951100\t13543\t31703\t3.8\t10\tnull\tnull\t4.64\t20\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.19\tnull\t708864608\t8.91\tnull\t12000\t2\tnull\tnull\t52400\t2019-01-31 07:01:40.483\t2019-02-13 07:01:16.813\n17951099\t13543\t31703\t3.63\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.1\tnull\t708864578\t8.83\tnull\tnull\t1\tnull\tnull\t54520\t2019-01-31 07:01:40.482\t2019-02-13 07:01:16.811\n17951098\t13543\t31703\t3.63\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.1\tnull\t708864577\t8.81\tnull\tnull\t1\tnull\tnull\t53580\t2019-01-31 07:01:40.481\t2019-02-13 07:01:16.81\n17918647\t13543\t31703\t3.58\t20\tnull\tnull\t4.64\t20\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.1\tnull\t708864640\t8.81\tnull\t12000\t3\tnull\tnull\t53600\t2019-01-30 07:01:38.636\t2019-02-13 07:01:16.817\n17918646\t13543\t31703\t3.42\t30\tnull\tnull\t4.63\t20\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.07\tnull\t708864639\t8.77\tnull\t8000\t3\tnull\tnull\t55240\t2019-01-30 07:01:38.635\t2019-02-13 07:01:16.815\n17951253\t13543\t31703\t3.95\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.19\tnull\t708864642\t8.94\tnull\tnull\t3\tnull\tnull\t53240\t2019-01-31 07:01:40.488\t2019-02-13 07:01:16.819\n17951254\t13543\t31703\t3.93\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.18\tnull\t708864643\t8.95\tnull\tnull\t3\tnull\tnull\t53300\t2019-01-31 07:01:40.489\t2019-02-13 07:01:16.821\n17951251\t13543\t31703\t3.82\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-29 00:00:00\t3907\t3.19\tnull\t708864609\t8.92\tnull\tnull\t2\tnull\tnull\t53940\t2019-01-31 07:01:40.484\t2019-02-13 07:01:16.814\n17918648\t13543\t31703\t3.88\t10\tnull\tnull\t4.69\t30\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.16\tnull\t680235426\t8.93\tnull\t44000\t1\tnull\tnull\t53680\t2019-01-30 07:01:38.637\t2019-02-13 07:01:16.822\n18113846\t13543\t31703\t3.64\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.11\tnull\t680235458\t8.86\tnull\tnull\t2\tnull\tnull\t54300\t2019-02-06 07:02:25.396\t2019-02-13 07:01:16.83\n17918804\t13543\t31703\t3.56\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.13\tnull\t680235489\t8.87\tnull\tnull\t3\tnull\tnull\t52800\t2019-01-30 07:01:38.642\t2019-02-13 07:01:16.832\n17918803\t13543\t31703\t3.56\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.14\tnull\t680235488\t8.89\tnull\tnull\t3\tnull\tnull\t53780\t2019-01-30 07:01:38.641\t2019-02-13 07:01:16.831\n17918802\t13543\t31703\t3.64\tnull\tnull\tnull\t4.67\t40\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.1\tnull\t680235457\t8.85\t170\t16000\t2\tnull\tnull\t53060\t2019-01-30 07:01:38.64\t2019-02-13 07:01:16.828\n17918801\t13543\t31703\t3.69\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.13\tnull\t680235429\t8.86\tnull\tnull\t1\tnull\tnull\t54300\t2019-01-30 07:01:38.639\t2019-02-13 07:01:16.827\n17918650\t13543\t31703\t3.89\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.15\tnull\t680235428\t8.88\tnull\tnull\t1\tnull\tnull\t54900\t2019-01-30 07:01:38.638\t2019-02-13 07:01:16.825\n17918649\t13543\t31703\t3.5\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-28 00:00:00\t3907\t3.05\tnull\t680235427\t8.79\tnull\tnull\t1\tnull\tnull\t53780\t2019-01-30 07:01:38.637\t2019-02-13 07:01:16.824\n17883725\t13543\t31703\t3.74\t30\tnull\tnull\t4.68\t80\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.12\tnull\t651606306\t8.87\tnull\t7000\t2\tnull\tnull\t52840\t2019-01-29 07:01:39.353\t2019-02-13 07:01:16.837\n17883728\t13543\t31703\t3.69\tnull\tnull\tnull\t4.68\t40\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.11\tnull\t651606309\t8.88\t180\t11000\t2\tnull\tnull\t52780\t2019-01-29 07:01:39.356\t2019-02-13 07:01:16.841\n17883724\t13543\t31703\t3.72\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.14\tnull\t651606276\t8.86\tnull\tnull\t1\tnull\tnull\t57660\t2019-01-29 07:01:39.352\t2019-02-13 07:01:16.835\n17883723\t13543\t31703\t3.71\tnull\tnull\tnull\t4.64\t60\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.12\tnull\t651606275\t8.83\t220\t4000\t1\tnull\tnull\t50280\t2019-01-29 07:01:39.351\t2019-02-13 07:01:16.834\n17859420\t13543\t31703\t3.43\t20\tnull\tnull\t4.64\t60\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.09\tnull\t651606337\t8.79\t240\t12000\t3\tnull\tnull\t53040\t2019-01-28 07:01:38.086\t2019-02-13 07:01:16.843\n17883730\t13543\t31703\t3.74\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.16\tnull\t651606339\t8.91\tnull\tnull\t3\tnull\tnull\t53660\t2019-01-29 07:01:39.359\t2019-02-13 07:01:16.846\n17883727\t13543\t31703\t3.75\tnull\tnull\tnull\t4.67\t20\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.12\tnull\t651606308\t8.87\t200\t13000\t2\tnull\tnull\t55520\t2019-01-29 07:01:39.355\t2019-02-13 07:01:16.84\n17883726\t13543\t31703\t3.7\tnull\tnull\tnull\t4.67\t40\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.11\tnull\t651606307\t8.86\tnull\t18000\t2\tnull\tnull\t53940\t2019-01-29 07:01:39.354\t2019-02-13 07:01:16.838\n17883729\t13543\t31703\t3.44\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-27 00:00:00\t3907\t3.1\tnull\t651606338\t8.82\tnull\tnull\t3\tnull\tnull\t54020\t2019-01-29 07:01:39.358\t2019-02-13 07:01:16.844\n17859427\t13543\t31703\t3.75\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.15\tnull\t622977188\t8.89\tnull\tnull\t3\tnull\tnull\t55340\t2019-01-28 07:01:38.093\t2019-02-13 07:01:16.859\n17859425\t13543\t31703\t3.59\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.15\tnull\t622977186\t8.88\tnull\tnull\t3\tnull\tnull\t56040\t2019-01-28 07:01:38.091\t2019-02-13 07:01:16.856\n17859426\t13543\t31703\t3.58\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.15\tnull\t622977187\t8.88\tnull\tnull\t3\tnull\tnull\t50920\t2019-01-28 07:01:38.092\t2019-02-13 07:01:16.857\n17839416\t13543\t31703\t3.73\tnull\tnull\tnull\t4.63\t50\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.17\tnull\t622977124\t8.88\tnull\t10000\t1\tnull\tnull\t57980\t2019-01-27 07:01:39.436\t2019-02-13 07:01:16.847\n17859424\t13543\t31703\t3.51\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.06\tnull\t622977156\t8.8\tnull\tnull\t2\tnull\tnull\t53960\t2019-01-28 07:01:38.09\t2019-02-13 07:01:16.854\n17859423\t13543\t31703\t3.51\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.07\tnull\t622977155\t8.82\tnull\tnull\t2\tnull\tnull\t53080\t2019-01-28 07:01:38.09\t2019-02-13 07:01:16.853\n18078825\t13543\t31703\t3.94\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.21\tnull\t622977127\t8.94\tnull\tnull\t1\tnull\tnull\t54120\t2019-02-05 07:01:40.307\t2019-02-13 07:01:16.852\n17859422\t13543\t31703\t3.94\t10\tnull\tnull\t4.66\t40\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.21\tnull\t622977126\t8.96\tnull\t11000\t1\tnull\tnull\t54140\t2019-01-28 07:01:38.089\t2019-02-13 07:01:16.85\n17859421\t13543\t31703\t3.74\t10\tnull\tnull\t4.64\t20\tnull\tnull\tnull\t2019-01-26 00:00:00\t3907\t3.17\tnull\t622977125\t8.89\tnull\t8000\t1\tnull\tnull\t57860\t2019-01-28 07:01:38.088\t2019-02-13 07:01:16.849\n17839420\t13543\t31703\t3.61\tnull\tnull\tnull\t4.66\t60\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.03\tnull\t594348005\t8.76\t180\t11000\t2\tnull\tnull\t54380\t2019-01-27 07:01:39.441\t2019-02-13 07:01:16.865\n17812073\t13543\t31703\t3.82\t40\tnull\tnull\t4.69\t80\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.08\tnull\t594348004\t8.84\tnull\t23000\t2\tnull\tnull\t50820\t2019-01-26 07:01:37.6\t2019-02-13 07:01:16.863\n17839424\t13543\t31703\t3.62\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.17\tnull\t594348036\t8.91\tnull\tnull\t3\tnull\tnull\t53200\t2019-01-27 07:01:39.445\t2019-02-13 07:01:16.871\n17839417\t13543\t31703\t3.59\tnull\tnull\tnull\t4.62\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.19\tnull\t594347973\t8.9\tnull\tnull\t1\tnull\tnull\t54280\t2019-01-27 07:01:39.437\t2019-02-13 07:01:16.86\n17839418\t13543\t31703\t3.59\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.19\tnull\t594347974\t8.91\tnull\tnull\t1\tnull\tnull\t53480\t2019-01-27 07:01:39.438\t2019-02-13 07:01:16.862\n17839419\t13543\t31703\t3.94\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.21\tnull\t594347975\t8.96\tnull\tnull\t1\tnull\tnull\t54140\t2019-01-27 07:01:39.439\t2019-02-02 07:01:37.889\n17839421\t13543\t31703\t3.61\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.03\tnull\t594348006\t8.75\tnull\tnull\t2\tnull\tnull\t52060\t2019-01-27 07:01:39.442\t2019-02-13 07:01:16.866\n17839422\t13543\t31703\t3.84\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.08\tnull\t594348007\t8.83\tnull\tnull\t2\tnull\tnull\t56080\t2019-01-27 07:01:39.443\t2019-02-13 07:01:16.868\n17839423\t13543\t31703\t3.54\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.11\tnull\t594348035\t8.85\tnull\tnull\t3\tnull\tnull\t56260\t2019-01-27 07:01:39.444\t2019-02-13 07:01:16.869\n18034289\t13543\t31703\t3.52\tnull\tnull\tnull\t4.61\tnull\tnull\tnull\tnull\t2019-01-25 00:00:00\t3907\t3.06\tnull\t594348037\t8.74\tnull\tnull\t3\tnull\tnull\t51420\t2019-02-03 07:01:35.154\t2019-02-13 07:01:16.872\n17812078\t13543\t31703\t3.56\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.07\tnull\t565718853\t8.8\tnull\tnull\t2\tnull\tnull\t52660\t2019-01-26 07:01:37.604\t2019-02-13 07:01:16.88\n17812074\t13543\t31703\t3.78\t10\tnull\tnull\t4.66\t70\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.09\tnull\t565718822\t8.82\tnull\t13000\t1\tnull\tnull\t53860\t2019-01-26 07:01:37.6\t2019-02-13 07:01:16.874\n17812082\t13543\t31703\t3.62\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.17\tnull\t565718887\t8.91\tnull\tnull\t3\tnull\tnull\t53200\t2019-01-26 07:01:37.607\t2019-02-01 07:01:37.739\n17812080\t13543\t31703\t3.77\t30\tnull\tnull\t4.62\t50\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.19\tnull\t565718885\t8.89\t210\t15000\t3\tnull\tnull\t53560\t2019-01-26 07:01:37.605\t2019-02-13 07:01:16.884\n17812079\t13543\t31703\t3.78\tnull\tnull\tnull\t4.61\t70\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.19\tnull\t565718884\t8.88\t230\t8000\t3\tnull\tnull\t53300\t2019-01-26 07:01:37.604\t2019-02-13 07:01:16.883\n17812075\t13543\t31703\t3.79\t20\tnull\tnull\t4.66\t40\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.12\tnull\t565718823\t8.87\tnull\t2000\t1\tnull\tnull\t54360\t2019-01-26 07:01:37.601\t2019-02-13 07:01:16.875\n18008715\t13543\t31703\t3.55\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.06\tnull\t565718854\t8.8\tnull\tnull\t2\tnull\tnull\t53680\t2019-02-02 07:01:37.905\t2019-02-13 07:01:16.882\n17812076\t13543\t31703\t3.93\t10\tnull\tnull\t4.68\t50\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.12\tnull\t565718824\t8.88\t180\t5000\t1\tnull\tnull\t57040\t2019-01-26 07:01:37.602\t2019-02-13 07:01:16.877\n17812077\t13543\t31703\t3.93\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.13\tnull\t565718825\t8.9\tnull\tnull\t1\tnull\tnull\t55560\t2019-01-26 07:01:37.603\t2019-02-13 07:01:16.878\n17812081\t13543\t31703\t3.63\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-24 00:00:00\t3907\t3.17\tnull\t565718886\t8.91\tnull\tnull\t3\tnull\tnull\t53800\t2019-01-26 07:01:37.606\t2019-02-13 07:01:16.886\n17979939\t13543\t31703\t3.91\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.19\tnull\t537089704\t8.94\tnull\tnull\t2\tnull\tnull\t50680\t2019-02-01 07:01:37.746\t2019-02-13 07:01:16.893\n17812088\t13543\t31703\t3.57\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.12\tnull\t537089733\t8.84\tnull\tnull\t3\tnull\tnull\t53820\t2019-01-26 07:01:37.612\t2019-02-13 07:01:16.895\n17812087\t13543\t31703\t3.6\tnull\tnull\tnull\t4.62\tnull\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.12\tnull\t537089703\t8.81\tnull\tnull\t2\tnull\tnull\t52740\t2019-01-26 07:01:37.611\t2019-02-13 07:01:16.892\n17812086\t13543\t31703\t3.58\tnull\tnull\tnull\t4.61\tnull\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.11\tnull\t537089702\t8.79\tnull\tnull\t2\tnull\tnull\t55580\t2019-01-26 07:01:37.61\t2019-02-13 07:01:16.89\n17812085\t13543\t31703\t3.93\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.12\tnull\t537089673\t8.88\tnull\tnull\t1\tnull\tnull\t57040\t2019-01-26 07:01:37.609\t2019-01-31 07:01:40.544\n17812084\t13543\t31703\t3.64\t20\tnull\tnull\t4.67\t10\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.1\tnull\t537089672\t8.85\tnull\t12000\t1\tnull\tnull\t54760\t2019-01-26 07:01:37.609\t2019-02-13 07:01:16.889\n17812083\t13543\t31703\t3.64\tnull\tnull\tnull\t4.67\t10\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.1\tnull\t537089671\t8.84\tnull\t23000\t1\tnull\tnull\t54680\t2019-01-26 07:01:37.608\t2019-02-13 07:01:16.887\n17812089\t13543\t31703\t3.58\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-23 00:00:00\t3907\t3.11\tnull\t537089734\t8.84\tnull\tnull\t3\tnull\tnull\t53460\t2019-01-26 07:01:37.613\t2019-02-13 07:01:16.896\n17751403\t13543\t31703\t3.91\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.19\tnull\t508460553\t8.91\tnull\tnull\t2\tnull\tnull\t55660\t2019-01-24 07:01:39.271\t2019-02-13 07:01:16.903\n17751404\t13543\t31703\t3.91\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.19\tnull\t508460554\t8.94\tnull\tnull\t2\tnull\tnull\t50680\t2019-01-24 07:01:39.272\t2019-01-31 07:01:40.557\n17751405\t13543\t31703\t3.55\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.12\tnull\t508460583\t8.85\tnull\tnull\t3\tnull\tnull\t53200\t2019-01-24 07:01:39.275\t2019-02-13 07:01:16.906\n17719177\t13543\t31703\t3.51\t10\tnull\tnull\t4.61\t60\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.07\tnull\t508460582\t8.75\tnull\t8000\t3\tnull\tnull\t53740\t2019-01-23 07:01:39.569\t2019-02-13 07:01:16.905\n17751200\t13543\t31703\t3.58\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.07\tnull\t508460521\t8.79\tnull\tnull\t1\tnull\tnull\t53500\t2019-01-24 07:01:39.268\t2019-02-13 07:01:16.899\n17751199\t13543\t31703\t3.54\t10\tnull\tnull\t4.67\t20\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.07\tnull\t508460520\t8.81\tnull\t9000\t1\tnull\tnull\t54480\t2019-01-24 07:01:39.267\t2019-02-13 07:01:16.898\n17751401\t13543\t31703\t3.72\tnull\tnull\tnull\t4.65\t60\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.17\tnull\t508460551\t8.9\tnull\t6000\t2\tnull\tnull\t52820\t2019-01-24 07:01:39.269\t2019-02-13 07:01:16.901\n17751402\t13543\t31703\t3.73\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.18\tnull\t508460552\t8.91\tnull\tnull\t2\tnull\tnull\t53580\t2019-01-24 07:01:39.27\t2019-02-13 07:01:16.902\n17979940\t13543\t31703\t3.75\tnull\tnull\tnull\t4.74\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.14\tnull\t508460585\t8.97\tnull\tnull\t3\tnull\tnull\t53320\t2019-02-01 07:01:37.76\t2019-02-13 07:01:16.91\n17751406\t13543\t31703\t3.81\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-22 00:00:00\t3907\t3.14\tnull\t508460584\t8.92\tnull\tnull\t3\tnull\tnull\t53660\t2019-01-24 07:01:39.276\t2019-02-13 07:01:16.908\n17979941\t13543\t31703\t3.6\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.12\tnull\t479831402\t8.89\tnull\tnull\t2\tnull\tnull\t53000\t2019-02-01 07:01:37.769\t2019-02-13 07:01:16.921\n17719181\t13543\t31703\t3.54\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.12\tnull\t479831400\t8.85\tnull\tnull\t2\tnull\tnull\t53120\t2019-01-23 07:01:39.573\t2019-02-13 07:01:16.918\n17719180\t13543\t31703\t4.05\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.16\tnull\t479831372\t8.92\tnull\tnull\t1\tnull\tnull\t53360\t2019-01-23 07:01:39.572\t2019-02-13 07:01:16.916\n17719182\t13543\t31703\t3.53\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.12\tnull\t479831401\t8.84\tnull\tnull\t2\tnull\tnull\t53520\t2019-01-23 07:01:39.574\t2019-02-13 07:01:16.919\n17719184\t13543\t31703\t3.56\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.11\tnull\t479831432\t8.87\tnull\tnull\t3\tnull\tnull\t53700\t2019-01-23 07:01:39.576\t2019-02-13 07:01:16.924\n17719185\t13543\t31703\t3.81\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.14\tnull\t479831433\t8.92\tnull\tnull\t3\tnull\tnull\t53660\t2019-01-23 07:01:39.577\t2019-01-31 07:01:40.573\n17682754\t13543\t31703\t3.77\t10\tnull\tnull\t4.65\t20\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.06\tnull\t479831369\t8.78\tnull\t15000\t1\tnull\tnull\t55540\t2019-01-22 07:01:37.791\t2019-02-13 07:01:16.911\n17719183\t13543\t31703\t3.56\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.12\tnull\t479831431\t8.88\tnull\tnull\t3\tnull\tnull\t53720\t2019-01-23 07:01:39.575\t2019-02-13 07:01:16.922\n17719178\t13543\t31703\t4.04\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.13\tnull\t479831370\t8.94\tnull\tnull\t1\tnull\tnull\t54560\t2019-01-23 07:01:39.571\t2019-02-13 07:01:16.913\n17719179\t13543\t31703\t3.78\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-21 00:00:00\t3907\t3.07\tnull\t479831371\t8.79\tnull\tnull\t1\tnull\tnull\t53020\t2019-01-23 07:01:39.572\t2019-02-13 07:01:16.914\n17682758\t13543\t31703\t3.79\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.14\tnull\t451202250\t8.91\tnull\tnull\t2\tnull\tnull\t53460\t2019-01-22 07:01:37.794\t2019-02-13 07:01:16.929\n17682757\t13543\t31703\t3.78\t60\tnull\tnull\t4.67\t60\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.14\tnull\t451202249\t8.9\tnull\t56000\t2\tnull\tnull\t54360\t2019-01-22 07:01:37.793\t2019-02-13 07:01:16.928\n17682756\t13543\t31703\t3.46\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.06\tnull\t451202219\t8.84\tnull\tnull\t1\tnull\tnull\t53240\t2019-01-22 07:01:37.792\t2019-02-13 07:01:16.926\n17656459\t13543\t31703\t3.48\t20\tnull\tnull\t4.66\t110\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.08\tnull\t451202280\t8.81\t190\t9000\t3\tnull\tnull\t53940\t2019-01-21 07:01:37.391\t2019-02-13 07:01:16.933\n17682762\t13543\t31703\t3.69\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.14\tnull\t451202283\t8.87\tnull\tnull\t3\tnull\tnull\t53440\t2019-01-22 07:01:37.8\t2019-01-30 07:01:38.73\n17682755\t13543\t31703\t3.46\t20\tnull\tnull\t4.7\t70\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.06\tnull\t451202218\t8.83\tnull\t90000\t1\tnull\tnull\t55120\t2019-01-22 07:01:37.791\t2019-02-13 07:01:16.925\n17682761\t13543\t31703\t3.69\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.14\tnull\t451202282\t8.87\tnull\tnull\t3\tnull\tnull\t53440\t2019-01-22 07:01:37.799\t2019-02-13 07:01:16.935\n17656460\t13543\t31703\t3.49\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.08\tnull\t451202281\t8.79\tnull\tnull\t3\tnull\tnull\t53400\t2019-01-21 07:01:37.392\t2019-02-13 07:01:16.934\n17682760\t13543\t31703\t3.6\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.12\tnull\t451202252\t8.89\tnull\tnull\t2\tnull\tnull\t52999\t2019-01-22 07:01:37.796\t2019-01-30 07:01:38.724\n17682759\t13543\t31703\t3.6\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-20 00:00:00\t3907\t3.11\tnull\t451202251\t8.85\tnull\tnull\t2\tnull\tnull\t53660\t2019-01-22 07:01:37.795\t2019-02-13 07:01:16.931\n17656461\t13543\t31703\t3.95\t40\tnull\tnull\t4.66\t80\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.21\tnull\t178639102\t8.94\t210\t14000\t1\tnull\tnull\t54420\t2019-01-21 07:01:37.395\t2019-02-13 07:01:16.94\n17645305\t13543\t31703\t3.73\t20\tnull\tnull\t4.65\t10\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.12\tnull\t178639103\t8.83\tnull\t1000\t1\tnull\tnull\t54400\t2019-01-20 07:01:37.102\t2019-02-13 07:01:16.938\n17645304\t13543\t31703\t3.71\t10\tnull\tnull\t4.64\t70\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.13\tnull\t178639104\t8.83\tnull\t48000\t1\tnull\tnull\t51720\t2019-01-20 07:01:37.101\t2019-02-13 07:01:16.937\n17656462\t13543\t31703\t3.94\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.2\tnull\t178639101\t8.95\tnull\tnull\t1\tnull\tnull\t53580\t2019-01-21 07:01:37.396\t2019-02-13 07:01:16.941\n17918805\t13543\t31703\t3.7\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.14\tnull\t178639040\t8.84\tnull\tnull\t3\tnull\tnull\t54040\t2019-01-30 07:01:38.742\t2019-02-13 07:01:16.949\n17656466\t13543\t31703\t3.73\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.13\tnull\t178639041\t8.85\tnull\tnull\t3\tnull\tnull\t53060\t2019-01-21 07:01:37.4\t2019-02-13 07:01:16.947\n17656465\t13543\t31703\t3.73\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.13\tnull\t178639042\t8.82\tnull\tnull\t3\tnull\tnull\t53880\t2019-01-21 07:01:37.399\t2019-02-13 07:01:16.946\n17656464\t13543\t31703\t3.47\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.05\tnull\t178639072\t8.78\tnull\tnull\t2\tnull\tnull\t51100\t2019-01-21 07:01:37.398\t2019-02-13 07:01:16.945\n17656463\t13543\t31703\t3.49\tnull\tnull\tnull\t4.67\t80\tnull\tnull\tnull\t2019-01-19 00:00:00\t3907\t3.06\tnull\t178639073\t8.79\t190\t31000\t2\tnull\tnull\t55540\t2019-01-21 07:01:37.397\t2019-02-13 07:01:16.943\n17645310\t13543\t31703\t3.53\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.03\tnull\t207268219\t8.79\tnull\tnull\t2\tnull\tnull\t53880\t2019-01-20 07:01:37.112\t2019-01-28 07:01:38.189\n17618950\t13543\t31703\t3.71\tnull\tnull\tnull\t4.66\t50\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.2\tnull\t207268255\t8.93\tnull\t48000\t1\tnull\tnull\t54460\t2019-01-19 07:01:38.185\t2019-02-13 07:01:16.95\n17645311\t13543\t31703\t3.75\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.15\tnull\t207268190\t8.89\tnull\tnull\t3\tnull\tnull\t53640\t2019-01-20 07:01:37.117\t2019-01-28 07:01:38.195\n17645307\t13543\t31703\t3.71\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.2\tnull\t207268253\t8.92\tnull\tnull\t1\tnull\tnull\t53480\t2019-01-20 07:01:37.105\t2019-01-28 07:01:38.179\n17645306\t13543\t31703\t3.71\t10\tnull\tnull\t4.66\t50\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.2\tnull\t207268254\t8.92\t220\t28000\t1\tnull\tnull\t53480\t2019-01-20 07:01:37.105\t2019-02-13 07:01:16.952\n17619101\t13543\t31703\t3.53\tnull\tnull\tnull\t4.7\t70\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.03\tnull\t207268224\t8.79\t220\t28000\t2\tnull\tnull\t53880\t2019-01-19 07:01:38.186\t2019-02-13 07:01:16.953\n17645308\t13543\t31703\t3.73\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.08\tnull\t207268221\t8.85\tnull\tnull\t2\tnull\tnull\t56360\t2019-01-20 07:01:37.11\t2019-02-13 07:01:16.958\n17619104\t13543\t31703\t3.51\t10\tnull\tnull\t4.65\t60\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.14\tnull\t207268193\t8.84\t190\t20000\t3\tnull\tnull\t50900\t2019-01-19 07:01:38.189\t2019-02-13 07:01:16.96\n17619106\t13543\t31703\t3.66\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.12\tnull\t207268191\t8.86\tnull\tnull\t3\tnull\tnull\t53320\t2019-01-19 07:01:38.191\t2019-02-13 07:01:16.962\n17619102\t13543\t31703\t3.75\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.09\tnull\t207268223\t8.84\tnull\tnull\t2\tnull\tnull\t51080\t2019-01-19 07:01:38.187\t2019-02-13 07:01:16.955\n17619105\t13543\t31703\t3.51\t30\tnull\tnull\t4.66\t70\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.13\tnull\t207268192\t8.85\tnull\t14000\t3\tnull\tnull\t56200\t2019-01-19 07:01:38.19\t2019-02-13 07:01:16.961\n17619103\t13543\t31703\t3.54\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.03\tnull\t207268222\t8.78\tnull\tnull\t2\tnull\tnull\t53200\t2019-01-19 07:01:38.188\t2019-02-13 07:01:16.957\n17645309\t13543\t31703\t3.73\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.08\tnull\t207268220\t8.85\tnull\tnull\t2\tnull\tnull\t56360\t2019-01-20 07:01:37.111\t2019-01-28 07:01:38.187\n17645312\t13543\t31703\t3.66\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-18 00:00:00\t3907\t3.12\tnull\t207268189\t8.86\tnull\tnull\t3\tnull\tnull\t5332\t2019-01-20 07:01:37.118\t2019-01-28 07:01:38.196\n17645314\t13543\t31703\t3.6\tnull\tnull\tnull\t4.67\t60\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.11\tnull\t235897374\t8.83\tnull\t8000\t2\tnull\tnull\t53540\t2019-01-20 07:01:37.58\t2019-02-13 07:01:16.972\n17590850\t13543\t31703\t3.79\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.12\tnull\t235897406\t8.84\tnull\tnull\t1\tnull\tnull\t53900\t2019-01-18 07:01:37.759\t2019-02-13 07:01:16.964\n17883734\t13543\t31703\t3.66\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.14\tnull\t235897342\t8.89\tnull\tnull\t3\tnull\tnull\t53220\t2019-01-29 07:01:39.472\t2019-02-13 07:01:16.977\n17619107\t13543\t31703\t3.78\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.12\tnull\t235897405\t8.86\tnull\tnull\t1\tnull\tnull\t53460\t2019-01-19 07:01:38.194\t2019-02-13 07:01:16.965\n17883731\t13543\t31703\t3.88\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.12\tnull\t235897404\t8.89\tnull\tnull\t1\tnull\tnull\t57120\t2019-01-29 07:01:39.464\t2019-02-13 07:01:16.967\n17883732\t13543\t31703\t3.87\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.12\tnull\t235897403\t8.89\tnull\tnull\t1\tnull\tnull\t55480\t2019-01-29 07:01:39.465\t2019-02-13 07:01:16.968\n17883733\t13543\t31703\t3.75\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.15\tnull\t235897343\t8.89\tnull\tnull\t3\tnull\tnull\t53640\t2019-01-29 07:01:39.471\t2019-02-13 07:01:16.975\n17619108\t13543\t31703\t3.75\t30\tnull\tnull\t4.69\t30\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.15\tnull\t235897344\t8.9\t200\t6000\t3\tnull\tnull\t53500\t2019-01-19 07:01:38.194\t2019-02-13 07:01:16.973\n17645313\t13543\t31703\t3.59\t40\tnull\tnull\t4.67\t40\tnull\tnull\tnull\t2019-01-17 00:00:00\t3907\t3.11\tnull\t235897375\t8.84\t220\t11000\t2\tnull\tnull\t52880\t2019-01-20 07:01:37.578\t2019-02-13 07:01:16.97\n17591005\t13543\t31703\t3.92\t40\tnull\tnull\t4.7\t80\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.22\tnull\t264526524\t8.99\tnull\t73000\t2\tnull\tnull\t54440\t2019-01-18 07:01:37.765\t2019-02-13 07:01:16.986\n17591006\t13543\t31703\t3.69\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.15\tnull\t264526495\t8.88\tnull\tnull\t3\tnull\tnull\t53400\t2019-01-18 07:01:37.766\t2019-02-13 07:01:16.989\n17619109\t13543\t31703\t3.93\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.23\tnull\t264526523\t9.01\tnull\tnull\t2\tnull\tnull\t52440\t2019-01-19 07:01:38.203\t2019-02-13 07:01:16.988\n17619110\t13543\t31703\t3.68\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.15\tnull\t264526493\t8.89\tnull\tnull\t3\tnull\tnull\t53779\t2019-01-19 07:01:38.206\t2019-01-25 07:01:36.206\n17561646\t13543\t31703\t3.56\t40\tnull\tnull\t4.63\t100\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.1\tnull\t264526526\t8.78\tnull\t11000\t2\tnull\tnull\t57000\t2019-01-17 07:01:38.89\t2019-02-13 07:01:16.983\n17591004\t13543\t31703\t3.56\t10\tnull\tnull\t4.63\t40\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.1\tnull\t264526525\t8.77\tnull\t39000\t2\tnull\tnull\t52780\t2019-01-18 07:01:37.764\t2019-02-13 07:01:16.984\n17591007\t13543\t31703\t3.68\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.15\tnull\t264526494\t8.89\tnull\tnull\t3\tnull\tnull\t53780\t2019-01-18 07:01:37.767\t2019-02-13 07:01:16.991\n17591001\t13543\t31703\t3.63\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.1\tnull\t264526557\t8.85\tnull\tnull\t1\tnull\tnull\t52940\t2019-01-18 07:01:37.76\t2019-02-13 07:01:16.979\n17591002\t13543\t31703\t3.63\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.11\tnull\t264526556\t8.88\tnull\tnull\t1\tnull\tnull\t55220\t2019-01-18 07:01:37.761\t2019-02-13 07:01:16.981\n17591003\t13543\t31703\t3.88\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-16 00:00:00\t3907\t3.12\tnull\t264526555\t8.89\tnull\tnull\t1\tnull\tnull\t57120\t2019-01-18 07:01:37.762\t2019-01-25 07:01:36.197\n17561649\t13543\t31703\t3.68\t20\tnull\tnull\t4.68\t40\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.14\tnull\t293155677\t8.88\tnull\t16000\t2\tnull\tnull\t53540\t2019-01-17 07:01:38.893\t2019-02-13 07:01:16.996\n17561851\t13543\t31703\t3.61\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.08\tnull\t293155645\t8.82\tnull\tnull\t3\tnull\tnull\t53200\t2019-01-17 07:01:38.896\t2019-02-13 07:01:17.001\n17561852\t13543\t31703\t3.73\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.15\tnull\t293155644\t8.95\tnull\tnull\t3\tnull\tnull\t53560\t2019-01-17 07:01:38.897\t2019-02-13 07:01:17.003\n17561648\t13543\t31703\t3.56\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.06\tnull\t293155707\t8.79\tnull\tnull\t1\tnull\tnull\t54280\t2019-01-17 07:01:38.892\t2019-02-13 07:01:16.995\n17561647\t13543\t31703\t3.55\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.06\tnull\t293155708\t8.79\tnull\tnull\t1\tnull\tnull\t52500\t2019-01-17 07:01:38.891\t2019-02-13 07:01:16.993\n17561650\t13543\t31703\t3.76\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.22\tnull\t293155676\t8.95\tnull\tnull\t2\tnull\tnull\t52980\t2019-01-17 07:01:38.894\t2019-02-13 07:01:16.998\n17529217\t13543\t31703\t3.62\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-15 00:00:00\t3907\t3.08\tnull\t293155646\t8.81\tnull\tnull\t3\tnull\tnull\t53680\t2019-01-16 07:01:27.31\t2019-02-13 07:01:16.999\n17529222\t13543\t31703\t3.6\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.16\tnull\t321784827\t8.88\tnull\tnull\t2\tnull\tnull\t56460\t2019-01-16 07:01:27.316\t2019-02-13 07:01:17.012\n17491245\t13543\t31703\t3.73\t30\tnull\tnull\t4.66\t160\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.07\tnull\t321784859\t8.8\tnull\t12000\t1\tnull\tnull\t54140\t2019-01-15 07:01:28.811\t2019-02-13 07:01:17.004\n17529224\t13543\t31703\t3.66\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.12\tnull\t321784796\t8.83\tnull\tnull\t3\tnull\tnull\t53780\t2019-01-16 07:01:27.318\t2019-02-13 07:01:17.017\n17529225\t13543\t31703\t3.74\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.17\tnull\t321784611\t8.96\tnull\tnull\t9\tnull\tnull\t77\t2019-01-16 07:01:27.319\t2019-01-23 07:01:39.653\n17529223\t13543\t31703\t3.66\tnull\tnull\tnull\t4.67\t110\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.11\tnull\t321784797\t8.83\tnull\t19000\t3\tnull\tnull\t53140\t2019-01-16 07:01:27.317\t2019-02-13 07:01:17.016\n17751408\t13543\t31703\t3.74\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.17\tnull\t321784795\t8.96\tnull\tnull\t3\tnull\tnull\t55560\t2019-01-24 07:01:39.39\t2019-02-13 07:01:17.019\n17529218\t13543\t31703\t3.74\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.14\tnull\t321784858\t8.91\tnull\tnull\t1\tnull\tnull\t52280\t2019-01-16 07:01:27.312\t2019-02-13 07:01:17.006\n17529220\t13543\t31703\t3.74\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.08\tnull\t321784856\t8.83\tnull\tnull\t1\tnull\tnull\t54100\t2019-01-16 07:01:27.314\t2019-02-13 07:01:17.009\n17529221\t13543\t31703\t3.6\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.17\tnull\t321784828\t8.86\tnull\tnull\t2\tnull\tnull\t50320\t2019-01-16 07:01:27.315\t2019-02-13 07:01:17.011\n17529219\t13543\t31703\t3.74\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.14\tnull\t321784857\t8.91\tnull\tnull\t1\tnull\tnull\t55760\t2019-01-16 07:01:27.313\t2019-02-13 07:01:17.007\n17751407\t13543\t31703\t3.79\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-14 00:00:00\t3907\t3.16\tnull\t321784826\t8.88\tnull\tnull\t2\tnull\tnull\t52860\t2019-01-24 07:01:39.386\t2019-02-13 07:01:17.014\n17719186\t13543\t31703\t3.68\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.15\tnull\t350413946\t8.93\tnull\tnull\t3\tnull\tnull\t53420\t2019-01-23 07:01:39.664\t2019-02-12 07:01:43.425\n17491246\t13543\t31703\t3.62\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.12\tnull\t350414010\t8.85\tnull\tnull\t1\tnull\tnull\t53860\t2019-01-15 07:01:28.812\t2019-02-12 07:01:43.391\n17491247\t13543\t31703\t3.62\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.12\tnull\t350414009\t8.84\tnull\tnull\t1\tnull\tnull\t54460\t2019-01-15 07:01:28.813\t2019-02-12 07:01:43.393\n17491248\t13543\t31703\t3.79\t40\tnull\tnull\t4.68\t50\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.15\tnull\t350413979\t8.88\tnull\t2000\t2\tnull\tnull\t53180\t2019-01-15 07:01:28.814\t2019-02-12 07:01:43.396\n17491249\t13543\t31703\t3.79\t10\tnull\tnull\t4.69\t50\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.15\tnull\t350413978\t8.89\tnull\t8000\t2\tnull\tnull\t53220\t2019-01-15 07:01:28.814\t2019-02-12 07:01:43.407\n17491250\t13543\t31703\t3.79\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.16\tnull\t350413977\t8.9\tnull\tnull\t2\tnull\tnull\t53600\t2019-01-15 07:01:28.815\t2019-02-12 07:01:43.409\n17491451\t13543\t31703\t3.79\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.16\tnull\t350413976\t8.9\tnull\tnull\t2\tnull\tnull\t53600\t2019-01-15 07:01:28.816\t2019-01-22 07:01:37.871\n17491453\t13543\t31703\t3.51\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.09\tnull\t350413947\t8.84\tnull\tnull\t3\tnull\tnull\t53820\t2019-01-15 07:01:28.818\t2019-02-12 07:01:43.423\n17491452\t13543\t31703\t3.51\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-13 00:00:00\t3907\t3.08\tnull\t350413948\t8.8\tnull\tnull\t3\tnull\tnull\t53440\t2019-01-15 07:01:28.817\t2019-02-12 07:01:43.412\n17154504\t13543\t31703\t3.64\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.15\tnull\t379043098\t8.9\tnull\tnull\t3\tnull\tnull\t56740\t2019-01-14 07:01:29.12\t2019-02-11 07:01:45.805\n17144100\t13543\t31703\t3.93\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.23\tnull\t379043159\t8.96\tnull\tnull\t1\tnull\tnull\t54580\t2019-01-14 07:01:29.116\t2019-01-22 07:01:37.878\n17154505\t13543\t31703\t3.68\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.15\tnull\t379043097\t8.94\tnull\tnull\t3\tnull\tnull\t53720\t2019-01-14 07:01:29.12\t2019-02-11 07:01:45.807\n17154506\t13543\t31703\t3.68\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.15\tnull\t379043096\t8.93\tnull\tnull\t3\tnull\tnull\t53420\t2019-01-14 07:01:29.121\t2019-01-22 07:01:37.885\n17154501\t13543\t31703\t3.7\t10\tnull\tnull\t4.67\t90\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.17\tnull\t379043130\t8.91\tnull\t21000\t2\tnull\tnull\t53320\t2019-01-14 07:01:29.117\t2019-02-11 07:01:45.801\n17154502\t13543\t31703\t3.66\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.14\tnull\t379043129\t8.85\tnull\tnull\t2\tnull\tnull\t52940\t2019-01-14 07:01:29.118\t2019-02-11 07:01:45.802\n17127036\t13543\t31703\t3.53\t20\tnull\tnull\t4.66\t50\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.16\tnull\t379043161\t8.9\tnull\t71000\t1\tnull\tnull\t53400\t2019-01-13 07:01:22.753\t2019-02-11 07:01:45.798\n17144099\t13543\t31703\t3.55\t70\tnull\tnull\t4.65\t60\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.17\tnull\t379043160\t8.89\tnull\t9000\t1\tnull\tnull\t54540\t2019-01-14 07:01:29.116\t2019-02-11 07:01:45.799\n17154503\t13543\t31703\t3.63\t90\tnull\tnull\t4.71\t70\tnull\tnull\tnull\t2019-01-12 00:00:00\t3907\t3.15\tnull\t379043099\t8.95\tnull\t9000\t3\tnull\tnull\t50160\t2019-01-14 07:01:29.119\t2019-02-11 07:01:45.804\n17110758\t13543\t31703\t3.65\t30\tnull\tnull\t4.74\t80\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.14\tnull\t407672250\t8.94\t190\t45000\t3\tnull\tnull\t52700\t2019-01-12 07:01:30.39\t2019-02-10 07:01:44.963\n17127044\t13543\t31703\t3.67\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.15\tnull\t407672247\t8.93\tnull\tnull\t3\tnull\tnull\t54380\t2019-01-13 07:01:22.761\t2019-02-10 07:01:44.968\n17719187\t13543\t31703\t3.93\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.23\tnull\t407672309\t8.96\tnull\tnull\t1\tnull\tnull\t54580\t2019-01-23 07:01:39.679\t2019-02-10 07:01:44.959\n17127038\t13543\t31703\t3.79\t10\tnull\tnull\t4.67\t80\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.23\tnull\t407672311\t8.96\tnull\t8000\t1\tnull\tnull\t54100\t2019-01-13 07:01:22.754\t2019-02-10 07:01:44.956\n17127039\t13543\t31703\t3.93\t10\tnull\tnull\t4.65\t100\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.24\tnull\t407672310\t8.97\t190\t15000\t1\tnull\tnull\t53440\t2019-01-13 07:01:22.755\t2019-02-10 07:01:44.957\n17127042\t13543\t31703\t3.7\t40\tnull\tnull\t4.68\t30\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.17\tnull\t407672249\t8.93\tnull\t49000\t3\tnull\tnull\t53940\t2019-01-13 07:01:22.759\t2019-02-10 07:01:44.965\n17127043\t13543\t31703\t3.71\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.18\tnull\t407672248\t8.92\tnull\tnull\t3\tnull\tnull\t53540\t2019-01-13 07:01:22.76\t2019-02-10 07:01:44.967\n17127040\t13543\t31703\t3.47\tnull\tnull\tnull\t4.71\t70\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.02\tnull\t407672281\t8.78\tnull\t63000\t2\tnull\tnull\t53560\t2019-01-13 07:01:22.756\t2019-02-10 07:01:44.96\n17127041\t13543\t31703\t3.46\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.02\tnull\t407672280\t8.76\tnull\tnull\t2\tnull\tnull\t53060\t2019-01-13 07:01:22.757\t2019-02-10 07:01:44.962\n17127037\t13543\t31703\t3.78\tnull\tnull\tnull\t4.67\t30\tnull\tnull\tnull\t2019-01-11 00:00:00\t3907\t3.22\tnull\t407672312\t8.95\t200\t13000\t1\tnull\tnull\t54360\t2019-01-13 07:01:22.754\t2019-02-10 07:01:44.954\n17110763\t13543\t31703\t3.67\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.13\tnull\t436301430\t8.9\tnull\tnull\t2\tnull\tnull\t54080\t2019-01-12 07:01:30.396\t2019-02-09 07:01:42.879\n17083061\t13543\t31703\t3.71\tnull\tnull\tnull\t4.66\t60\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.19\tnull\t436301463\t8.93\tnull\t11000\t1\tnull\tnull\t51540\t2019-01-11 07:01:22.909\t2019-02-09 07:01:42.871\n17110759\t13543\t31703\t3.85\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.19\tnull\t436301462\t8.93\tnull\tnull\t1\tnull\tnull\t54480\t2019-01-12 07:01:30.392\t2019-02-09 07:01:42.873\n17110760\t13543\t31703\t3.71\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.16\tnull\t436301461\t8.91\tnull\tnull\t1\tnull\tnull\t56560\t2019-01-12 07:01:30.393\t2019-02-09 07:01:42.875\n17110761\t13543\t31703\t3.68\t10\tnull\tnull\t4.69\t60\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.12\tnull\t436301432\t8.89\t200\t16000\t2\tnull\tnull\t53040\t2019-01-12 07:01:30.394\t2019-02-09 07:01:42.876\n17110762\t13543\t31703\t3.73\tnull\tnull\tnull\t4.65\t30\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.17\tnull\t436301431\t8.91\tnull\t13000\t2\tnull\tnull\t52580\t2019-01-12 07:01:30.395\t2019-02-09 07:01:42.878\n17110764\t13543\t31703\t3.74\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.17\tnull\t436301429\t8.94\tnull\tnull\t2\tnull\tnull\t53840\t2019-01-12 07:01:30.397\t2019-02-09 07:01:42.881\n17110765\t13543\t31703\t3.58\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.13\tnull\t436301401\t8.87\tnull\tnull\t3\tnull\tnull\t53420\t2019-01-12 07:01:30.398\t2019-02-09 07:01:42.883\n17110766\t13543\t31703\t3.59\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-10 00:00:00\t3907\t3.14\tnull\t436301400\t8.91\tnull\tnull\t3\tnull\tnull\t53960\t2019-01-12 07:01:30.399\t2019-02-09 07:01:42.884\n17083063\t13543\t31703\t3.57\t10\tnull\tnull\t4.7\t60\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.14\tnull\t1066142784\t8.89\tnull\t9000\t1\tnull\tnull\t54760\t2019-01-11 07:01:22.911\t2019-02-08 07:01:45.404\n17083064\t13543\t31703\t3.85\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.18\tnull\t1066142783\t8.9\tnull\tnull\t1\tnull\tnull\t53300\t2019-01-11 07:01:22.912\t2019-02-08 07:01:45.406\n17083065\t13543\t31703\t3.61\tnull\tnull\tnull\t4.67\t20\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.12\tnull\t1066142754\t8.84\tnull\t7000\t2\tnull\tnull\t53000\t2019-01-11 07:01:22.913\t2019-02-08 07:01:45.409\n17042207\t13543\t31703\t3.47\tnull\tnull\tnull\t4.67\t60\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.11\tnull\t1066142723\t8.83\t220\t7000\t3\tnull\tnull\t55500\t2019-01-10 07:01:26.233\t2019-02-08 07:01:45.418\n17083066\t13543\t31703\t3.6\t20\tnull\tnull\t4.67\t60\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.13\tnull\t1066142753\t8.85\t180\t6000\t2\tnull\tnull\t53420\t2019-01-11 07:01:22.915\t2019-02-08 07:01:45.415\n17083068\t13543\t31703\t3.74\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.14\tnull\t1066142721\t8.87\tnull\tnull\t3\tnull\tnull\t55120\t2019-01-11 07:01:22.918\t2019-02-08 07:01:45.424\n17083069\t13543\t31703\t3.47\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.11\tnull\t1066142720\t8.82\tnull\tnull\t3\tnull\tnull\t53460\t2019-01-11 07:01:22.919\t2019-02-08 07:01:45.427\n17083067\t13543\t31703\t3.71\t20\tnull\tnull\t4.72\t50\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.15\tnull\t1066142722\t8.93\tnull\t12000\t3\tnull\tnull\t51960\t2019-01-11 07:01:22.917\t2019-02-08 07:01:45.42\n17083062\t13543\t31703\t3.58\tnull\tnull\tnull\t4.69\t70\tnull\tnull\tnull\t2019-01-09 00:00:00\t3907\t3.13\tnull\t1066142785\t8.88\t180\t5000\t1\tnull\tnull\t55540\t2019-01-11 07:01:22.91\t2019-02-08 07:01:45.401\n17042211\t13543\t31703\t3.75\t10\tnull\tnull\t4.65\t60\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.21\tnull\t1094771904\t8.95\t230\t160000\t2\tnull\tnull\t53740\t2019-01-10 07:01:26.239\t2019-02-07 07:03:06.538\n17042208\t13543\t31703\t3.59\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.07\tnull\t1094771936\t8.86\tnull\tnull\t1\tnull\tnull\t53480\t2019-01-10 07:01:26.234\t2019-02-07 07:03:06.534\n17042209\t13543\t31703\t3.59\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.07\tnull\t1094771935\t8.85\tnull\tnull\t1\tnull\tnull\t54640\t2019-01-10 07:01:26.236\t2019-02-07 07:03:06.535\n17042212\t13543\t31703\t3.68\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.19\tnull\t1094771903\t8.91\tnull\tnull\t2\tnull\tnull\t53660\t2019-01-10 07:01:26.24\t2019-02-07 07:03:06.54\n17042213\t13543\t31703\t3.68\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.17\tnull\t1094771902\t8.88\tnull\tnull\t2\tnull\tnull\t53100\t2019-01-10 07:01:26.242\t2019-02-07 07:03:06.541\n17042215\t13543\t31703\t3.5\t10\tnull\tnull\t4.7\t10\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.13\tnull\t1094771873\t8.91\t200\t39000\t3\tnull\tnull\t54420\t2019-01-10 07:01:26.244\t2019-02-07 07:03:06.545\n17042214\t13543\t31703\t3.5\t10\tnull\tnull\t4.69\t40\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.12\tnull\t1094771874\t8.89\tnull\t15000\t3\tnull\tnull\t53380\t2019-01-10 07:01:26.243\t2019-02-07 07:03:06.543\n17042210\t13543\t31703\t3.74\t10\tnull\tnull\t4.68\t40\tnull\tnull\tnull\t2019-01-08 00:00:00\t3907\t3.21\tnull\t1094771905\t8.98\tnull\t100000\t2\tnull\tnull\t52880\t2019-01-10 07:01:26.237\t2019-02-07 07:03:06.537\n17005810\t13543\t31703\t3.66\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.12\tnull\t1123401084\t8.9\tnull\tnull\t1\tnull\tnull\t52720\t2019-01-09 07:01:22.693\t2019-02-06 07:02:25.707\n17005809\t13543\t31703\t3.71\tnull\tnull\tnull\t4.73\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.2\tnull\t1123401085\t9.02\tnull\tnull\t1\tnull\tnull\t54580\t2019-01-09 07:01:22.692\t2019-02-06 07:02:25.705\n17005808\t13543\t31703\t3.65\tnull\tnull\tnull\t4.74\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.12\tnull\t1123401086\t8.94\tnull\tnull\t1\tnull\tnull\t55360\t2019-01-09 07:01:22.69\t2019-02-06 07:02:25.703\n17005807\t13543\t31703\t3.71\t30\tnull\tnull\t4.7\t40\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.2\tnull\t1123401087\t8.98\tnull\t1000\t1\tnull\tnull\t53480\t2019-01-09 07:01:22.689\t2019-02-06 07:02:25.702\n17005811\t13543\t31703\t3.68\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.21\tnull\t1123401056\t8.96\tnull\tnull\t2\tnull\tnull\t56500\t2019-01-09 07:01:22.694\t2019-02-06 07:02:25.709\n17005813\t13543\t31703\t3.61\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.15\tnull\t1123401024\t8.88\tnull\tnull\t3\tnull\tnull\t52660\t2019-01-09 07:01:22.697\t2019-02-06 07:02:25.714\n17005812\t13543\t31703\t3.68\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.2\tnull\t1123401055\t8.96\tnull\tnull\t2\tnull\tnull\t50900\t2019-01-09 07:01:22.694\t2019-02-06 07:02:25.71\n17005814\t13543\t31703\t3.62\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.14\tnull\t1123401023\t8.88\tnull\tnull\t3\tnull\tnull\t54420\t2019-01-09 07:01:22.698\t2019-02-06 07:02:25.716\n16972646\t13543\t31703\t3.66\t270\tnull\tnull\t4.71\t130\tnull\tnull\tnull\t2019-01-07 00:00:00\t3907\t3.15\tnull\t1123401025\t8.94\tnull\t10000\t3\tnull\tnull\t52360\t2019-01-08 07:01:46.439\t2019-02-06 07:02:25.712\n16972650\t13543\t31703\t3.65\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.16\tnull\t1152030205\t8.89\tnull\tnull\t2\tnull\tnull\t52160\t2019-01-08 07:01:46.446\t2019-02-05 07:01:40.59\n16972803\t13543\t31703\t3.58\tnull\tnull\tnull\t4.71\t90\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.14\tnull\t1152030175\t8.93\tnull\t9000\t3\tnull\tnull\t55620\t2019-01-08 07:01:46.448\t2019-02-05 07:01:40.595\n16942539\t13543\t31703\t3.88\t10\tnull\tnull\t4.7\t40\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.28\tnull\t1152030207\t9.07\tnull\t21000\t2\tnull\tnull\t50160\t2019-01-07 07:01:16.192\t2019-02-05 07:01:40.585\n16942538\t13543\t31703\t3.56\t10\tnull\tnull\t4.69\t120\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.14\tnull\t1152030238\t8.91\tnull\t9000\t1\tnull\tnull\t54340\t2019-01-07 07:01:16.192\t2019-02-05 07:01:40.579\n16972804\t13543\t31703\t3.67\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.15\tnull\t1152030174\t8.94\tnull\tnull\t3\tnull\tnull\t54420\t2019-01-08 07:01:46.449\t2019-02-05 07:01:40.597\n16972649\t13543\t31703\t3.65\t20\tnull\tnull\t4.64\t120\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.17\tnull\t1152030206\t8.88\tnull\t11000\t2\tnull\tnull\t54640\t2019-01-08 07:01:46.445\t2019-02-05 07:01:40.588\n16972648\t13543\t31703\t3.65\tnull\tnull\tnull\t4.67\t80\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.12\tnull\t1152030236\t8.88\tnull\t22000\t1\tnull\tnull\t53360\t2019-01-08 07:01:46.443\t2019-02-05 07:01:40.583\n16972647\t13543\t31703\t3.55\tnull\tnull\tnull\t4.7\t60\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.15\tnull\t1152030237\t8.94\tnull\t10000\t1\tnull\tnull\t53700\t2019-01-08 07:01:46.442\t2019-02-05 07:01:40.581\n16972801\t13543\t31703\t3.89\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.29\tnull\t1152030204\t9.07\tnull\tnull\t2\tnull\tnull\t56600\t2019-01-08 07:01:46.447\t2019-02-05 07:01:40.592\n16972802\t13543\t31703\t3.57\t1500\tnull\tnull\t4.7\t40\tnull\tnull\tnull\t2019-01-06 00:00:00\t3907\t3.15\tnull\t1152030176\t8.93\t200\t39000\t3\tnull\tnull\t52600\t2019-01-08 07:01:46.448\t2019-02-05 07:01:40.593\n16942540\t13543\t31703\t3.64\t10\tnull\tnull\t4.67\t50\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.14\tnull\t1180659389\t8.89\tnull\t16000\t1\tnull\tnull\t53720\t2019-01-07 07:01:16.193\t2019-02-04 07:01:39.848\n17529226\t13543\t31703\t3.75\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.2\tnull\t1180659325\t8.97\tnull\tnull\t3\tnull\tnull\t53440\t2019-01-16 07:01:27.422\t2019-02-04 07:01:39.86\n16942546\t13543\t31703\t3.62\tnull\tnull\tnull\t4.66\t120\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.18\tnull\t1180659326\t8.93\tnull\t5000\t3\tnull\tnull\t44520\t2019-01-07 07:01:16.198\t2019-02-04 07:01:39.858\n16942545\t13543\t31703\t3.63\tnull\tnull\tnull\t4.65\t160\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.18\tnull\t1180659327\t8.92\t230\t8000\t3\tnull\tnull\t52880\t2019-01-07 07:01:16.197\t2019-02-04 07:01:39.856\n16942544\t13543\t31703\t3.77\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.21\tnull\t1180659357\t8.99\tnull\tnull\t2\tnull\tnull\t53140\t2019-01-07 07:01:16.197\t2019-02-04 07:01:39.855\n16942543\t13543\t31703\t3.77\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.22\tnull\t1180659358\t9.03\tnull\tnull\t2\tnull\tnull\t53360\t2019-01-07 07:01:16.196\t2019-02-04 07:01:39.853\n16942542\t13543\t31703\t3.64\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.12\tnull\t1180659387\t8.88\tnull\tnull\t1\tnull\tnull\t54540\t2019-01-07 07:01:16.195\t2019-02-04 07:01:39.851\n16942541\t13543\t31703\t3.64\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-05 00:00:00\t3907\t3.14\tnull\t1180659388\t8.9\tnull\tnull\t1\tnull\tnull\t54340\t2019-01-07 07:01:16.194\t2019-02-04 07:01:39.85\n17491454\t13543\t31703\t3.8\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.22\tnull\t1209288507\t8.99\tnull\tnull\t2\tnull\tnull\t54140\t2019-01-15 07:01:28.911\t2019-02-03 07:01:35.426\n17491455\t13543\t31703\t3.86\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.22\tnull\t1209288506\t9\tnull\tnull\t2\tnull\tnull\t52960\t2019-01-15 07:01:28.912\t2019-02-03 07:01:35.428\n16922993\t13543\t31703\tnull\t10\tnull\tnull\tnull\t80\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\tnull\tnull\t1209288475\tnull\tnull\t4000\t3\tnull\tnull\tnull\t2019-01-06 07:01:16.227\t2019-02-03 07:01:35.435\n16922991\t13543\t31703\t3.59\t10\tnull\tnull\t4.66\t50\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.18\tnull\t1209288477\t8.93\t230\t6000\t3\tnull\tnull\t53780\t2019-01-06 07:01:16.225\t2019-02-03 07:01:35.431\n16922992\t13543\t31703\t3.76\t10\tnull\tnull\t4.67\t130\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.19\tnull\t1209288476\t8.95\tnull\t2000\t3\tnull\tnull\t55320\t2019-01-06 07:01:16.226\t2019-02-03 07:01:35.433\n16922990\t13543\t31703\t3.58\t20\tnull\tnull\t4.66\t40\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.18\tnull\t1209288478\t8.92\tnull\t29000\t3\tnull\tnull\t53340\t2019-01-06 07:01:16.224\t2019-02-03 07:01:35.429\n16922989\t13543\t31703\t3.55\tnull\tnull\tnull\t4.62\tnull\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.19\tnull\t1209288508\t8.9\tnull\tnull\t2\tnull\tnull\t53060\t2019-01-06 07:01:16.223\t2019-02-03 07:01:35.424\n16922988\t13543\t31703\t3.55\t60\tnull\tnull\t4.64\t80\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.2\tnull\t1209288509\t8.93\t200\t8000\t2\tnull\tnull\t53520\t2019-01-06 07:01:16.223\t2019-02-03 07:01:35.423\n16922987\t13543\t31703\t3.52\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.1\tnull\t1209288539\t8.88\tnull\tnull\t1\tnull\tnull\t53080\t2019-01-06 07:01:16.222\t2019-02-03 07:01:35.421\n16922986\t13543\t31703\t3.51\t10\tnull\tnull\t4.7\t30\tnull\tnull\tnull\t2019-01-04 00:00:00\t3907\t3.09\tnull\t1209288540\t8.88\t180\t4000\t1\tnull\tnull\t54980\t2019-01-06 07:01:16.221\t2019-02-03 07:01:35.419\n16865924\t13543\t31703\t3.63\t1500\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.11\tnull\t1237917691\t8.85\tnull\t51000\t1\tnull\tnull\t55740\t2019-01-04 07:01:18.751\t2019-02-02 07:01:38.179\n16904299\t13543\t31703\t3.8\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.22\tnull\t1237917658\t8.99\tnull\tnull\t2\tnull\tnull\t54140\t2019-01-05 07:01:16.494\t2019-01-11 07:01:22.997\n16904300\t13543\t31703\t3.86\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.22\tnull\t1237917657\t9\tnull\tnull\t2\tnull\tnull\t52960\t2019-01-05 07:01:16.495\t2019-01-11 07:01:22.998\n17110767\t13543\t31703\t3.73\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.17\tnull\t1237917627\t8.95\tnull\tnull\t3\tnull\tnull\t53120\t2019-01-12 07:01:30.481\t2019-02-02 07:01:38.193\n16904452\t13543\t31703\t3.56\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.17\tnull\t1237917628\t8.91\tnull\tnull\t3\tnull\tnull\t55820\t2019-01-05 07:01:16.498\t2019-02-02 07:01:38.192\n16904451\t13543\t31703\t3.56\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.17\tnull\t1237917629\t8.92\tnull\tnull\t3\tnull\tnull\t51200\t2019-01-05 07:01:16.496\t2019-02-02 07:01:38.19\n16904298\t13543\t31703\t3.72\tnull\tnull\tnull\t4.69\t10\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.2\tnull\t1237917659\t8.97\t200\t42000\t2\tnull\tnull\t50900\t2019-01-05 07:01:16.493\t2019-02-02 07:01:38.188\n16904297\t13543\t31703\t3.73\t20\tnull\tnull\t4.68\t10\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.18\tnull\t1237917660\t8.94\tnull\t16000\t2\tnull\tnull\t55600\t2019-01-05 07:01:16.491\t2019-02-02 07:01:38.186\n16904296\t13543\t31703\t3.56\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.15\tnull\t1237917688\t8.92\tnull\tnull\t1\tnull\tnull\t56660\t2019-01-05 07:01:16.49\t2019-02-02 07:01:38.184\n16904295\t13543\t31703\t3.65\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.12\tnull\t1237917689\t8.88\tnull\tnull\t1\tnull\tnull\t54300\t2019-01-05 07:01:16.484\t2019-02-02 07:01:38.183\n16904294\t13543\t31703\t3.56\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2019-01-03 00:00:00\t3907\t3.15\tnull\t1237917690\t8.95\tnull\tnull\t1\tnull\tnull\t51840\t2019-01-05 07:01:16.482\t2019-02-02 07:01:38.181\n16865927\t13543\t31703\t3.61\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.21\tnull\t1266546810\t8.93\tnull\tnull\t2\tnull\tnull\t52980\t2019-01-04 07:01:18.755\t2019-02-01 07:01:38.018\n16865926\t13543\t31703\t3.64\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.14\tnull\t1266546841\t8.88\tnull\tnull\t1\tnull\tnull\t53240\t2019-01-04 07:01:18.753\t2019-02-01 07:01:38.013\n16865925\t13543\t31703\t3.64\t40\tnull\tnull\t4.66\t10\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.13\tnull\t1266546842\t8.88\t220\t10000\t1\tnull\tnull\t54500\t2019-01-04 07:01:18.752\t2019-02-01 07:01:38.012\n16865931\t13543\t31703\t3.72\t190\tnull\tnull\t4.7\t200\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.17\tnull\t1266546778\t8.95\tnull\t15000\t3\tnull\tnull\t54160\t2019-01-04 07:01:18.759\t2019-02-01 07:01:38.026\n16865930\t13543\t31703\t3.56\t70\tnull\tnull\t4.68\t2500\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.2\tnull\t1266546779\t8.97\tnull\t20000\t3\tnull\tnull\t53540\t2019-01-04 07:01:18.758\t2019-02-01 07:01:38.024\n16829527\t13543\t31703\t3.62\t60\tnull\tnull\t4.64\t1000\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.22\tnull\t1266546811\t8.95\t200\t15000\t2\tnull\tnull\t54020\t2019-01-03 07:01:21.342\t2019-02-01 07:01:38.015\n16865932\t13543\t31703\t3.73\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.17\tnull\t1266546777\t8.95\tnull\tnull\t3\tnull\tnull\t53120\t2019-01-04 07:01:18.76\t2019-01-10 07:01:26.383\n16865929\t13543\t31703\t3.57\t60\tnull\tnull\t4.68\t2500\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.2\tnull\t1266546780\t8.98\t200\t9000\t3\tnull\tnull\t53280\t2019-01-04 07:01:18.757\t2019-02-01 07:01:38.022\n16865928\t13543\t31703\t3.87\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-02 00:00:00\t3907\t3.22\tnull\t1266546809\t8.98\tnull\tnull\t2\tnull\tnull\t52680\t2019-01-04 07:01:18.756\t2019-02-01 07:01:38.02\n16829530\t13543\t31703\t3.57\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.21\tnull\t1295175962\t8.98\tnull\tnull\t2\tnull\tnull\t54660\t2019-01-03 07:01:21.345\t2019-01-31 07:01:40.826\n17042216\t13543\t31703\t3.78\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.21\tnull\t1295175991\t9\tnull\tnull\t1\tnull\tnull\t54200\t2019-01-10 07:01:26.389\t2019-01-31 07:01:40.824\n16829529\t13543\t31703\t3.51\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.12\tnull\t1295175992\t8.88\tnull\tnull\t1\tnull\tnull\t54060\t2019-01-03 07:01:21.344\t2019-01-31 07:01:40.822\n16829528\t13543\t31703\t3.5\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.12\tnull\t1295175993\t8.87\tnull\tnull\t1\tnull\tnull\t53880\t2019-01-03 07:01:21.343\t2019-01-31 07:01:40.821\n16829532\t13543\t31703\t3.87\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.22\tnull\t1295175960\t8.99\tnull\tnull\t2\tnull\tnull\t53580\t2019-01-03 07:01:21.347\t2019-01-31 07:01:40.829\n16829533\t13543\t31703\t3.59\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.17\tnull\t1295175930\t8.94\tnull\tnull\t3\tnull\tnull\t53160\t2019-01-03 07:01:21.349\t2019-01-31 07:01:40.832\n16804362\t13543\t31703\t3.6\t30\tnull\tnull\t4.72\t340\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.19\tnull\t1295175931\t9\tnull\t21000\t3\tnull\tnull\t53820\t2019-01-02 07:01:21.797\t2019-01-31 07:01:40.831\n16829531\t13543\t31703\t3.57\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.21\tnull\t1295175961\t8.98\tnull\tnull\t2\tnull\tnull\t52480\t2019-01-03 07:01:21.346\t2019-01-31 07:01:40.827\n16829534\t13543\t31703\t3.77\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2019-01-01 00:00:00\t3907\t3.22\tnull\t1295175929\t8.99\tnull\tnull\t3\tnull\tnull\t53180\t2019-01-03 07:01:21.35\t2019-01-31 07:01:40.834\n16804363\t13543\t31703\t3.65\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.15\tnull\t636633879\t8.96\tnull\tnull\t1\tnull\tnull\t54200\t2019-01-02 07:01:21.798\t2019-01-30 07:01:39.008\n16804372\t13543\t31703\t3.78\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.21\tnull\t636633815\t9\tnull\tnull\t3\tnull\tnull\t54200\t2019-01-02 07:01:21.805\t2019-01-08 07:01:46.515\n16804366\t13543\t31703\t3.65\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.13\tnull\t636633876\t8.95\tnull\tnull\t1\tnull\tnull\t55500\t2019-01-02 07:01:21.8\t2019-01-30 07:01:39.015\n16804367\t13543\t31703\t3.68\t20\tnull\tnull\t4.66\t60\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.18\tnull\t636633848\t8.92\tnull\t6000\t2\tnull\tnull\t54520\t2019-01-02 07:01:21.801\t2019-01-30 07:01:39.017\n16804368\t13543\t31703\t3.68\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.17\tnull\t636633847\t8.95\tnull\tnull\t2\tnull\tnull\t52720\t2019-01-02 07:01:21.802\t2019-01-30 07:01:39.019\n16804369\t13543\t31703\t3.82\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.19\tnull\t636633846\t8.98\tnull\tnull\t2\tnull\tnull\t53680\t2019-01-02 07:01:21.803\t2019-01-30 07:01:39.021\n16804370\t13543\t31703\t3.44\t80\tnull\tnull\t4.67\t20\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.18\tnull\t636633817\t8.94\tnull\t15000\t3\tnull\tnull\t53400\t2019-01-02 07:01:21.803\t2019-01-30 07:01:39.026\n16804371\t13543\t31703\t3.44\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.18\tnull\t636633816\t8.93\tnull\tnull\t3\tnull\tnull\t55320\t2019-01-02 07:01:21.804\t2019-01-30 07:01:39.028\n17005815\t13543\t31703\t3.84\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.19\tnull\t636633845\t8.98\tnull\tnull\t2\tnull\tnull\t52840\t2019-01-09 07:01:22.805\t2019-01-30 07:01:39.023\n16804364\t13543\t31703\t3.67\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.19\tnull\t636633878\t8.95\tnull\tnull\t1\tnull\tnull\t54040\t2019-01-02 07:01:21.798\t2019-01-30 07:01:39.011\n16804365\t13543\t31703\t3.67\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-31 00:00:00\t3907\t3.21\tnull\t636633877\t8.97\tnull\tnull\t1\tnull\tnull\t54580\t2019-01-02 07:01:21.799\t2019-01-30 07:01:39.013\n16804373\t13543\t31703\t3.53\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.14\tnull\t665263030\t8.95\tnull\tnull\t1\tnull\tnull\t54760\t2019-01-02 07:01:21.806\t2019-01-29 07:01:39.705\n16804377\t13543\t31703\t3.82\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.19\tnull\t665262997\t8.98\tnull\tnull\t2\tnull\tnull\t53680\t2019-01-02 07:01:21.809\t2019-01-08 07:01:46.522\n16804376\t13543\t31703\t3.6\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.23\tnull\t665262998\t8.99\tnull\tnull\t2\tnull\tnull\t52920\t2019-01-02 07:01:21.808\t2019-01-29 07:01:39.711\n16804378\t13543\t31703\t3.41\t1500\tnull\tnull\t4.66\t50\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.14\tnull\t665262968\t8.89\tnull\t31000\t3\tnull\tnull\t53520\t2019-01-02 07:01:21.81\t2019-01-29 07:01:39.712\n16804379\t13543\t31703\t3.41\t240\tnull\tnull\t4.69\t70\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.15\tnull\t665262967\t8.92\tnull\t6000\t3\tnull\tnull\t55060\t2019-01-02 07:01:21.811\t2019-01-29 07:01:39.714\n16804380\t13543\t31703\t3.71\tnull\tnull\tnull\t4.73\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.17\tnull\t665262966\t9\tnull\tnull\t3\tnull\tnull\t50880\t2019-01-02 07:01:21.812\t2019-01-29 07:01:39.716\n16804375\t13543\t31703\t3.6\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.23\tnull\t665262999\t8.96\tnull\tnull\t2\tnull\tnull\t53340\t2019-01-02 07:01:21.808\t2019-01-29 07:01:39.709\n17005816\t13543\t31703\t3.72\tnull\tnull\tnull\t4.73\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.17\tnull\t665262965\t9\tnull\tnull\t3\tnull\tnull\t55980\t2019-01-09 07:01:22.824\t2019-01-29 07:01:39.718\n16804374\t13543\t31703\t3.53\tnull\tnull\tnull\t4.71\tnull\tnull\tnull\tnull\t2018-12-30 00:00:00\t3907\t3.15\tnull\t665263029\t8.96\tnull\tnull\t1\tnull\tnull\t53160\t2019-01-02 07:01:21.807\t2019-01-29 07:01:39.707\n16740540\t13543\t31703\t3.72\t1500\tnull\tnull\t4.68\t50\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.11\tnull\t1295104352\t8.87\tnull\t12000\t1\tnull\tnull\t53320\t2018-12-30 07:01:19.223\t2019-01-28 07:01:38.471\n16740541\t13543\t31703\t3.57\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.1\tnull\t1295104351\t8.83\tnull\tnull\t1\tnull\tnull\t53880\t2018-12-30 07:01:19.223\t2019-01-28 07:01:38.473\n16740542\t13543\t31703\t3.6\t110\tnull\tnull\t4.62\t100\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.24\tnull\t1295104321\t8.95\tnull\t22000\t2\tnull\tnull\t49560\t2018-12-30 07:01:19.224\t2019-01-28 07:01:38.479\n16781757\t13543\t31703\t3.72\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.11\tnull\t1295104350\t8.85\tnull\tnull\t1\tnull\tnull\t54480\t2019-01-01 07:01:16.884\t2019-01-28 07:01:38.475\n16781758\t13543\t31703\t3.57\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.11\tnull\t1295104349\t8.84\tnull\tnull\t1\tnull\tnull\t54260\t2019-01-01 07:01:16.884\t2019-01-28 07:01:38.477\n16781759\t13543\t31703\t3.87\t50\tnull\tnull\t4.64\t40\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.24\tnull\t1295104320\t8.97\tnull\t2000\t2\tnull\tnull\t51180\t2019-01-01 07:01:16.887\t2019-01-28 07:01:38.481\n16781760\t13543\t31703\t3.6\tnull\tnull\tnull\t4.61\tnull\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.24\tnull\t1295104319\t8.94\tnull\tnull\t2\tnull\tnull\t56880\t2019-01-01 07:01:16.888\t2019-01-28 07:01:38.483\n16781761\t13543\t31703\t3.5\t1500\tnull\tnull\t4.64\t40\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.14\tnull\t1295104290\t8.87\t190\t51000\t3\tnull\tnull\t53360\t2019-01-01 07:01:16.889\t2019-01-28 07:01:38.485\n16781762\t13543\t31703\t3.5\t150\tnull\tnull\t4.67\t20\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\t3.13\tnull\t1295104289\t8.89\tnull\t2000\t3\tnull\tnull\t53520\t2019-01-01 07:01:16.89\t2019-01-28 07:01:38.487\n16781763\t13543\t31703\tnull\t120\tnull\tnull\tnull\t70\tnull\tnull\tnull\t2018-12-29 00:00:00\t3907\tnull\tnull\t1295104288\tnull\tnull\t8000\t3\tnull\tnull\tnull\t2019-01-01 07:01:16.891\t2019-01-28 07:01:38.495\n16740545\t13543\t31703\t3.7\t160\tnull\tnull\t4.62\t100\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.2\tnull\t1323733472\t8.9\t180\t9000\t2\tnull\tnull\t53720\t2018-12-30 07:01:19.227\t2019-01-27 07:01:39.777\n16740544\t13543\t31703\t3.42\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.06\tnull\t1323733502\t8.75\tnull\tnull\t1\tnull\tnull\t54120\t2018-12-30 07:01:19.226\t2019-01-27 07:01:39.775\n16740546\t13543\t31703\t3.7\t90\tnull\tnull\t4.64\t50\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.21\tnull\t1323733471\t8.92\t180\t2000\t2\tnull\tnull\t53120\t2018-12-30 07:01:19.228\t2019-01-27 07:01:39.964\n16740547\t13543\t31703\t3.87\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.25\tnull\t1323733470\t8.99\tnull\tnull\t2\tnull\tnull\t55440\t2018-12-30 07:01:19.229\t2019-01-27 07:01:39.965\n16740548\t13543\t31703\t3.66\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.18\tnull\t1323733439\t8.94\tnull\tnull\t3\tnull\tnull\t53940\t2018-12-30 07:01:19.232\t2019-01-27 07:01:39.97\n16740549\t13543\t31703\t3.65\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.16\tnull\t1323733438\t8.9\tnull\tnull\t3\tnull\tnull\t53480\t2018-12-30 07:01:19.233\t2019-01-27 07:01:39.972\n16715345\t13543\t31703\t3.53\t310\tnull\tnull\t4.62\t80\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.11\tnull\t1323733441\t8.8\tnull\t13000\t3\tnull\tnull\t53780\t2018-12-29 07:01:22.262\t2019-01-27 07:01:39.967\n16715346\t13543\t31703\t3.53\t290\tnull\tnull\t4.63\t70\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.11\tnull\t1323733440\t8.82\tnull\t44000\t3\tnull\tnull\t53040\t2018-12-29 07:01:22.263\t2019-01-27 07:01:39.968\n16740543\t13543\t31703\t3.41\t60\tnull\tnull\t4.67\t20\tnull\tnull\tnull\t2018-12-28 00:00:00\t3907\t3.05\tnull\t1323733503\t8.78\t190\t16000\t1\tnull\tnull\t53560\t2018-12-30 07:01:19.225\t2019-01-27 07:01:39.773\n16685442\t13543\t31703\t3.62\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.09\tnull\t1352362654\t8.84\tnull\tnull\t1\tnull\tnull\t54260\t2018-12-28 07:01:19.838\t2019-01-26 07:01:37.921\n16715349\t13543\t31703\t3.56\t130\tnull\tnull\t4.65\t2500\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.18\tnull\t1352362623\t8.9\tnull\t9000\t2\tnull\tnull\t54400\t2018-12-29 07:01:22.267\t2019-01-26 07:01:37.927\n16715350\t13543\t31703\t3.58\t100\tnull\tnull\t4.63\t2500\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.2\tnull\t1352362622\t8.91\tnull\t4000\t2\tnull\tnull\t55500\t2018-12-29 07:01:22.267\t2019-01-26 07:01:37.929\n16715501\t13543\t31703\t3.6\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.13\tnull\t1352362592\t8.87\tnull\tnull\t3\tnull\tnull\t53440\t2018-12-29 07:01:22.268\t2019-01-26 07:01:37.93\n16715502\t13543\t31703\t3.61\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.15\tnull\t1352362591\t8.92\tnull\tnull\t3\tnull\tnull\t53340\t2018-12-29 07:01:22.269\t2019-01-26 07:01:37.932\n16904453\t13543\t31703\t3.86\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.18\tnull\t1352362651\t8.95\tnull\tnull\t1\tnull\tnull\t56140\t2019-01-05 07:01:16.612\t2019-01-26 07:01:37.926\n16715348\t13543\t31703\t3.62\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.09\tnull\t1352362652\t8.82\tnull\tnull\t1\tnull\tnull\t53980\t2018-12-29 07:01:22.266\t2019-01-26 07:01:37.924\n16715347\t13543\t31703\t3.88\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-27 00:00:00\t3907\t3.18\tnull\t1352362653\t8.94\tnull\tnull\t1\tnull\tnull\t51900\t2018-12-29 07:01:22.265\t2019-01-26 07:01:37.923\n16685447\t13543\t31703\t3.65\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.16\tnull\t1380991772\t8.93\tnull\tnull\t2\tnull\tnull\t53980\t2018-12-28 07:01:19.842\t2019-01-25 07:01:36.468\n16685446\t13543\t31703\t3.84\t100\tnull\tnull\t4.69\t2500\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.16\tnull\t1380991773\t8.93\tnull\t14000\t2\tnull\tnull\t54160\t2018-12-28 07:01:19.841\t2019-01-25 07:01:36.466\n16685445\t13543\t31703\t3.83\t140\tnull\tnull\t4.72\t2500\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.17\tnull\t1380991774\t8.98\tnull\t16000\t2\tnull\tnull\t52880\t2018-12-28 07:01:19.84\t2019-01-25 07:01:36.464\n16685801\t13543\t31703\t3.86\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.18\tnull\t1380991557\t8.95\tnull\tnull\t9\tnull\tnull\t77\t2018-12-28 07:01:19.847\t2019-01-04 07:01:18.853\n16685444\t13543\t31703\t3.53\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.13\tnull\t1380991804\t8.85\tnull\tnull\t1\tnull\tnull\t53560\t2018-12-28 07:01:19.84\t2019-01-25 07:01:36.463\n16685443\t13543\t31703\t3.53\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.13\tnull\t1380991805\t8.85\tnull\tnull\t1\tnull\tnull\t54660\t2018-12-28 07:01:19.839\t2019-01-25 07:01:36.461\n16652269\t13543\t31703\t3.61\t20\tnull\tnull\t4.67\t330\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.13\tnull\t1380991743\t8.87\tnull\t120000\t3\tnull\tnull\t53940\t2018-12-27 07:01:21.923\t2019-01-25 07:01:36.471\n16685450\t13543\t31703\t3.71\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.14\tnull\t1380991741\t8.92\tnull\tnull\t3\tnull\tnull\t53280\t2018-12-28 07:01:19.846\t2019-01-25 07:01:36.474\n16685449\t13543\t31703\t3.58\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.14\tnull\t1380991742\t8.86\tnull\tnull\t3\tnull\tnull\t53360\t2018-12-28 07:01:19.845\t2019-01-25 07:01:36.473\n16685448\t13543\t31703\t3.66\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-26 00:00:00\t3907\t3.16\tnull\t1380991771\t8.93\tnull\tnull\t2\tnull\tnull\t52820\t2018-12-28 07:01:19.843\t2019-01-25 07:01:36.469\n16630975\t13543\t31703\t3.74\t30\tnull\tnull\t4.64\t660\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.16\tnull\t1409620956\t8.89\tnull\t93000\t1\tnull\tnull\t57200\t2018-12-26 07:01:18.305\t2019-01-24 07:01:39.674\n16904454\t13543\t31703\t3.74\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.16\tnull\t1409620953\t8.88\tnull\tnull\t1\tnull\tnull\t52940\t2019-01-05 07:01:16.638\t2019-01-24 07:01:39.679\n16652272\t13543\t31703\t3.46\t110\tnull\tnull\t4.72\t950\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.09\tnull\t1409620924\t8.89\tnull\t39000\t2\tnull\tnull\t53500\t2018-12-27 07:01:21.928\t2019-01-24 07:01:39.683\n16652273\t13543\t31703\t3.59\t80\tnull\tnull\t4.69\t300\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.16\tnull\t1409620894\t8.93\t200\t28000\t3\tnull\tnull\t54080\t2018-12-27 07:01:21.929\t2019-01-24 07:01:39.684\n16652274\t13543\t31703\t3.6\tnull\tnull\tnull\t4.67\t80\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.17\tnull\t1409620893\t8.92\t260\t62000\t3\tnull\tnull\t52980\t2018-12-27 07:01:21.93\t2019-01-24 07:01:39.686\n16652275\t13543\t31703\t3.69\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.13\tnull\t1409620892\t8.88\tnull\tnull\t3\tnull\tnull\t54080\t2018-12-27 07:01:21.931\t2019-01-24 07:01:39.687\n16652271\t13543\t31703\t3.47\t160\tnull\tnull\t4.68\t900\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.1\tnull\t1409620925\t8.85\tnull\t24000\t2\tnull\tnull\t52900\t2018-12-27 07:01:21.927\t2019-01-24 07:01:39.681\n16652270\t13543\t31703\t3.88\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.21\tnull\t1409620954\t8.93\tnull\tnull\t1\tnull\tnull\t56160\t2018-12-27 07:01:21.926\t2019-01-24 07:01:39.678\n16652276\t13543\t31703\t3.74\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.16\tnull\t1409620708\t8.89\tnull\tnull\t9\tnull\tnull\t57200\t2018-12-27 07:01:21.932\t2019-01-04 07:01:18.867\n16630976\t13543\t31703\t3.88\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-25 00:00:00\t3907\t3.2\tnull\t1409620955\t8.93\tnull\tnull\t1\tnull\tnull\t52060\t2018-12-26 07:01:18.306\t2019-01-24 07:01:39.676\n16610984\t13543\t31703\t3.67\t30\tnull\tnull\t4.7\t230\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.14\tnull\t1438250076\t8.93\t180\t11000\t2\tnull\tnull\t50620\t2018-12-25 07:01:18.692\t2019-01-23 07:01:39.92\n16865933\t13543\t31703\t3.78\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.15\tnull\t1438250043\t8.91\tnull\tnull\t3\tnull\tnull\t53240\t2019-01-04 07:01:18.882\t2019-01-23 07:01:39.93\n16630982\t13543\t31703\t3.57\t170\tnull\tnull\t4.63\t80\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.14\tnull\t1438250044\t8.85\t230\t66000\t3\tnull\tnull\t53580\t2018-12-26 07:01:18.314\t2019-01-23 07:01:39.928\n16630981\t13543\t31703\t3.68\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.14\tnull\t1438250073\t8.92\tnull\tnull\t2\tnull\tnull\t56300\t2018-12-26 07:01:18.312\t2019-01-23 07:01:39.925\n16630980\t13543\t31703\t3.59\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.07\tnull\t1438250074\t8.85\tnull\tnull\t2\tnull\tnull\t52720\t2018-12-26 07:01:18.311\t2019-01-23 07:01:39.923\n16630979\t13543\t31703\t3.59\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.07\tnull\t1438250075\t8.85\tnull\tnull\t2\tnull\tnull\t54280\t2018-12-26 07:01:18.31\t2019-01-23 07:01:39.922\n16610985\t13543\t31703\t3.64\t1500\tnull\tnull\t4.67\t60\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.14\tnull\t1438250045\t8.89\tnull\t29000\t3\tnull\tnull\t53580\t2018-12-25 07:01:18.693\t2019-01-23 07:01:39.926\n16630978\t13543\t31703\t3.71\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.2\tnull\t1438250106\t8.93\tnull\tnull\t1\tnull\tnull\t54180\t2018-12-26 07:01:18.308\t2019-01-23 07:01:39.918\n16630977\t13543\t31703\t3.7\t30\tnull\tnull\t4.65\t140\tnull\tnull\tnull\t2018-12-24 00:00:00\t3907\t3.19\tnull\t1438250107\t8.93\t210\t49000\t1\tnull\tnull\t53900\t2018-12-26 07:01:18.307\t2019-01-23 07:01:39.917\n16610992\t13543\t31703\t3.7\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.21\tnull\t1466879195\t8.95\tnull\tnull\t3\tnull\tnull\t53420\t2018-12-25 07:01:18.701\t2019-01-22 07:01:38.148\n16610993\t13543\t31703\t3.79\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.15\tnull\t1466879194\t8.9\tnull\tnull\t3\tnull\tnull\t54660\t2018-12-25 07:01:18.702\t2019-01-22 07:01:38.15\n16584599\t13543\t31703\t3.41\t1500\tnull\tnull\t4.62\t70\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.1\tnull\t1466879258\t8.78\tnull\t20000\t1\tnull\tnull\t54200\t2018-12-24 07:01:20.08\t2019-01-22 07:01:38.136\n16610986\t13543\t31703\t3.41\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.1\tnull\t1466879257\t8.81\tnull\tnull\t1\tnull\tnull\t53780\t2018-12-25 07:01:18.695\t2019-01-22 07:01:38.138\n16610987\t13543\t31703\t3.82\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.21\tnull\t1466879256\t8.96\tnull\tnull\t1\tnull\tnull\t51980\t2018-12-25 07:01:18.697\t2019-01-22 07:01:38.14\n16610988\t13543\t31703\t3.81\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.2\tnull\t1466879255\t8.92\tnull\tnull\t1\tnull\tnull\t56720\t2018-12-25 07:01:18.698\t2019-01-22 07:01:38.141\n16610989\t13543\t31703\t3.56\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.1\tnull\t1466879227\t8.87\tnull\tnull\t2\tnull\tnull\t52940\t2018-12-25 07:01:18.698\t2019-01-22 07:01:38.143\n16610990\t13543\t31703\t3.55\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.1\tnull\t1466879226\t8.86\tnull\tnull\t2\tnull\tnull\t53500\t2018-12-25 07:01:18.699\t2019-01-22 07:01:38.145\n16610991\t13543\t31703\t3.7\t1500\tnull\tnull\t4.66\t70\tnull\tnull\tnull\t2018-12-23 00:00:00\t3907\t3.2\tnull\t1466879196\t8.94\tnull\t19000\t3\tnull\tnull\t53880\t2018-12-25 07:01:18.7\t2019-01-22 07:01:38.146\n16590304\t13543\t31703\t3.47\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.02\tnull\t1495508375\t8.8\tnull\tnull\t2\tnull\tnull\t53820\t2018-12-24 07:01:20.087\t2019-01-21 07:01:37.749\n16590306\t13543\t31703\t3.66\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.15\tnull\t1495508345\t8.91\tnull\tnull\t3\tnull\tnull\t53180\t2018-12-24 07:01:20.09\t2019-01-21 07:01:37.754\n16590305\t13543\t31703\t3.62\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.1\tnull\t1495508346\t8.8\tnull\tnull\t3\tnull\tnull\t53120\t2018-12-24 07:01:20.089\t2019-01-21 07:01:37.752\n16565196\t13543\t31703\t3.61\t40\tnull\tnull\t4.64\t70\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.1\tnull\t1495508347\t8.81\tnull\t9000\t3\tnull\tnull\t53960\t2018-12-23 07:01:21.835\t2019-01-21 07:01:37.751\n16565195\t13543\t31703\t3.6\t30\tnull\tnull\t4.73\t40\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.08\tnull\t1495508378\t8.88\tnull\t7000\t2\tnull\tnull\t53680\t2018-12-23 07:01:21.834\t2019-01-21 07:01:37.744\n16584600\t13543\t31703\t3.71\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.21\tnull\t1495508409\t8.94\tnull\tnull\t1\tnull\tnull\t54480\t2018-12-24 07:01:20.081\t2019-01-21 07:01:37.741\n16590301\t13543\t31703\t3.71\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.2\tnull\t1495508408\t8.93\tnull\tnull\t1\tnull\tnull\t54220\t2018-12-24 07:01:20.082\t2019-01-21 07:01:37.742\n16590302\t13543\t31703\t3.6\t30\tnull\tnull\t4.72\t80\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.08\tnull\t1495508377\t8.88\tnull\t7000\t2\tnull\tnull\t53240\t2018-12-24 07:01:20.085\t2019-01-21 07:01:37.746\n16590303\t13543\t31703\t3.48\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-22 00:00:00\t3907\t3.02\tnull\t1495508376\t8.81\tnull\tnull\t2\tnull\tnull\t53180\t2018-12-24 07:01:20.086\t2019-01-21 07:01:37.747\n16546333\t13543\t31703\t3.72\t50\tnull\tnull\t4.62\t30\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.17\tnull\t1524137560\t8.87\tnull\t6000\t1\tnull\tnull\t53640\t2018-12-22 07:01:22.508\t2019-01-20 07:01:37.563\n16570352\t13543\t31703\t3.61\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.15\tnull\t1524137497\t8.88\tnull\tnull\t3\tnull\tnull\t54500\t2018-12-23 07:01:21.844\t2019-01-20 07:01:37.575\n16570351\t13543\t31703\t3.59\t30\tnull\tnull\t4.67\t30\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.15\tnull\t1524137498\t8.89\tnull\t27000\t3\tnull\tnull\t53100\t2018-12-23 07:01:21.843\t2019-01-20 07:01:37.573\n16565198\t13543\t31703\t3.93\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.27\tnull\t1524137557\t9.02\tnull\tnull\t1\tnull\tnull\t54480\t2018-12-23 07:01:21.84\t2019-01-20 07:01:37.568\n16565197\t13543\t31703\t3.93\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.26\tnull\t1524137558\t8.98\tnull\tnull\t1\tnull\tnull\t53460\t2018-12-23 07:01:21.839\t2019-01-20 07:01:37.566\n16565200\t13543\t31703\t3.46\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.04\tnull\t1524137528\t8.8\tnull\tnull\t2\tnull\tnull\t53620\t2018-12-23 07:01:21.842\t2019-01-20 07:01:37.571\n16570353\t13543\t31703\t3.68\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.16\tnull\t1524137496\t8.92\tnull\tnull\t3\tnull\tnull\t53820\t2018-12-23 07:01:21.845\t2019-01-20 07:01:37.577\n16565199\t13543\t31703\t3.44\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.04\tnull\t1524137529\t8.8\tnull\tnull\t2\tnull\tnull\t53220\t2018-12-23 07:01:21.841\t2019-01-20 07:01:37.569\n16546334\t13543\t31703\t3.73\t410\tnull\tnull\t4.64\t600\tnull\tnull\tnull\t2018-12-21 00:00:00\t3907\t3.17\tnull\t1524137559\t8.89\tnull\t18000\t1\tnull\tnull\t54260\t2018-12-22 07:01:22.509\t2019-01-20 07:01:37.564\n16546336\t13543\t31703\t3.69\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.25\tnull\t1552766710\t8.98\tnull\tnull\t1\tnull\tnull\t54560\t2018-12-22 07:01:22.511\t2019-01-19 07:01:38.748\n16546335\t13543\t31703\t3.68\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.25\tnull\t1552766711\t8.98\tnull\tnull\t1\tnull\tnull\t53360\t2018-12-22 07:01:22.51\t2019-01-19 07:01:38.746\n16546337\t13543\t31703\t3.78\t170\tnull\tnull\t4.71\t600\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.1\tnull\t1552766679\t8.89\tnull\t30000\t2\tnull\tnull\t52900\t2018-12-22 07:01:22.513\t2019-01-19 07:01:38.752\n16546338\t13543\t31703\t3.59\t100\tnull\tnull\t4.69\t340\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.03\tnull\t1552766678\t8.78\tnull\t16000\t2\tnull\tnull\t53080\t2018-12-22 07:01:22.514\t2019-01-19 07:01:38.753\n16546339\t13543\t31703\t3.79\tnull\tnull\tnull\t4.72\tnull\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.12\tnull\t1552766677\t8.92\tnull\tnull\t2\tnull\tnull\t53660\t2018-12-22 07:01:22.515\t2019-01-19 07:01:38.755\n16546341\t13543\t31703\t3.53\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.14\tnull\t1552766648\t8.88\tnull\tnull\t3\tnull\tnull\t53460\t2018-12-22 07:01:22.517\t2019-01-19 07:01:38.759\n16546340\t13543\t31703\t3.52\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.14\tnull\t1552766649\t8.87\tnull\tnull\t3\tnull\tnull\t53440\t2018-12-22 07:01:22.516\t2019-01-19 07:01:38.757\n16519717\t13543\t31703\t3.58\t20\tnull\tnull\t4.71\t90\tnull\tnull\tnull\t2018-12-20 00:00:00\t3907\t3.04\tnull\t1552766680\t8.82\t150\t12000\t2\tnull\tnull\t53520\t2018-12-21 07:01:17.548\t2019-01-19 07:01:38.75\n16519719\t13543\t31703\t3.85\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.23\tnull\t2112359265\t8.94\tnull\tnull\t1\tnull\tnull\t54260\t2018-12-21 07:01:17.555\t2019-01-18 07:01:38.146\n16519725\t13543\t31703\t3.67\tnull\tnull\tnull\t4.66\tnull\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.17\tnull\t2112359328\t8.9\tnull\tnull\t3\tnull\tnull\t53300\t2018-12-21 07:01:17.567\t2019-01-18 07:01:38.156\n16519724\t13543\t31703\t3.67\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.16\tnull\t2112359327\t8.89\tnull\tnull\t3\tnull\tnull\t52980\t2018-12-21 07:01:17.565\t2019-01-18 07:01:38.154\n16519723\t13543\t31703\t3.67\t10\tnull\tnull\t4.64\t40\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.19\tnull\t2112359326\t8.9\t230\t47000\t3\tnull\tnull\t53660\t2018-12-21 07:01:17.563\t2019-01-18 07:01:38.153\n16519720\t13543\t31703\t3.5\tnull\tnull\tnull\t4.69\tnull\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.06\tnull\t2112359294\t8.82\tnull\tnull\t2\tnull\tnull\t53520\t2018-12-21 07:01:17.558\t2019-01-18 07:01:38.148\n16519722\t13543\t31703\t3.68\t20\tnull\tnull\t4.64\t30\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.2\tnull\t2112359325\t8.92\t240\t53000\t3\tnull\tnull\t53860\t2018-12-21 07:01:17.562\t2019-01-18 07:01:38.151\n16519721\t13543\t31703\t3.5\tnull\tnull\tnull\t4.7\tnull\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.06\tnull\t2112359295\t8.83\tnull\tnull\t2\tnull\tnull\t53140\t2018-12-21 07:01:17.559\t2019-01-18 07:01:38.149\n16519718\t13543\t31703\t3.58\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.19\tnull\t2112359264\t8.91\tnull\tnull\t1\tnull\tnull\t54540\t2018-12-21 07:01:17.554\t2019-01-18 07:01:38.144\n16493770\t13543\t31703\t3.58\t130\tnull\tnull\t4.64\t90\tnull\tnull\tnull\t2018-12-19 00:00:00\t3907\t3.19\tnull\t2112359263\t8.9\tnull\t10000\t1\tnull\tnull\t53480\t2018-12-20 07:01:17.826\t2019-01-18 07:01:38.143\n16464623\t13543\t31703\t3.54\t40\tnull\tnull\t4.66\t20\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.05\tnull\t2083730143\t8.78\t210\t18000\t2\tnull\tnull\t50540\t2018-12-19 07:01:18.114\t2019-01-17 07:01:39.255\n16493771\t13543\t31703\t3.72\t20\tnull\tnull\t4.65\t40\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.17\tnull\t2083730112\t8.9\tnull\t5000\t1\tnull\tnull\t54360\t2018-12-20 07:01:17.827\t2019-01-17 07:01:39.25\n16493772\t13543\t31703\t3.72\t10\tnull\tnull\t4.66\t30\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.17\tnull\t2083730113\t8.9\t180\t6000\t1\tnull\tnull\t53600\t2018-12-20 07:01:17.828\t2019-01-17 07:01:39.252\n16493773\t13543\t31703\t3.87\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.21\tnull\t2083730114\t8.92\tnull\tnull\t1\tnull\tnull\t53600\t2018-12-20 07:01:17.828\t2019-01-17 07:01:39.254\n16493774\t13543\t31703\t3.85\t40\tnull\tnull\t4.67\t30\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.16\tnull\t2083730145\t8.92\t200\t23000\t2\tnull\tnull\t50520\t2018-12-20 07:01:17.832\t2019-01-17 07:01:39.259\n16493775\t13543\t31703\t3.85\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.17\tnull\t2083730146\t8.95\tnull\tnull\t2\tnull\tnull\t55920\t2018-12-20 07:01:17.832\t2019-01-17 07:01:39.261\n16493776\t13543\t31703\t3.52\t50\tnull\tnull\t4.62\t10\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.14\tnull\t2083730174\t8.85\t210\t24000\t3\tnull\tnull\t53480\t2018-12-20 07:01:17.833\t2019-01-17 07:01:39.262\n16464624\t13543\t31703\t3.57\t50\tnull\tnull\t4.67\t30\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.07\tnull\t2083730144\t8.81\tnull\t36000\t2\tnull\tnull\t56720\t2018-12-19 07:01:18.115\t2019-01-17 07:01:39.257\n16715503\t13543\t31703\t3.68\tnull\tnull\tnull\t4.62\tnull\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.2\tnull\t2083730176\t8.9\tnull\tnull\t3\tnull\tnull\t49980\t2018-12-29 07:01:22.375\t2019-01-17 07:01:39.266\n16493777\t13543\t31703\t3.52\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-18 00:00:00\t3907\t3.14\tnull\t2083730175\t8.85\tnull\tnull\t3\tnull\tnull\t53480\t2018-12-20 07:01:17.834\t2019-01-17 07:01:39.264\n16464630\t13543\t31703\t3.77\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.23\tnull\t2055101024\t8.97\tnull\tnull\t3\tnull\tnull\t54420\t2018-12-19 07:01:18.123\t2019-01-16 07:01:27.686\n16431093\t13543\t31703\t3.61\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.14\tnull\t2055100961\t8.87\tnull\tnull\t1\tnull\tnull\t53800\t2018-12-18 07:01:17.763\t2019-01-16 07:01:27.674\n16431094\t13543\t31703\t3.6\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.13\tnull\t2055100962\t8.85\tnull\tnull\t1\tnull\tnull\t54220\t2018-12-18 07:01:17.764\t2019-01-16 07:01:27.676\n16464626\t13543\t31703\t3.73\tnull\tnull\tnull\t4.63\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.2\tnull\t2055100964\t8.91\tnull\tnull\t1\tnull\tnull\t54000\t2018-12-19 07:01:18.119\t2019-01-16 07:01:27.679\n16464627\t13543\t31703\t3.53\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.09\tnull\t2055100992\t8.85\tnull\tnull\t2\tnull\tnull\t52540\t2018-12-19 07:01:18.12\t2019-01-16 07:01:27.681\n16464628\t13543\t31703\t3.51\tnull\tnull\tnull\t4.68\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.08\tnull\t2055100993\t8.84\tnull\tnull\t2\tnull\tnull\t54980\t2018-12-19 07:01:18.121\t2019-01-16 07:01:27.683\n16464629\t13543\t31703\t3.76\t30\tnull\tnull\t4.63\t60\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.23\tnull\t2055101023\t8.95\t240\t10000\t3\tnull\tnull\t53480\t2018-12-19 07:01:18.122\t2019-01-16 07:01:27.684\n16464625\t13543\t31703\t3.73\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.2\tnull\t2055100963\t8.92\tnull\tnull\t1\tnull\tnull\t55720\t2018-12-19 07:01:18.118\t2019-01-16 07:01:27.677\n16464631\t13543\t31703\t3.68\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.2\tnull\t2055101025\t8.93\tnull\tnull\t3\tnull\tnull\t56860\t2018-12-19 07:01:18.124\t2019-01-16 07:01:27.688\n16464632\t13543\t31703\t3.68\tnull\tnull\tnull\t4.64\tnull\tnull\tnull\tnull\t2018-12-17 00:00:00\t3907\t3.2\tnull\t2055101026\t8.93\tnull\tnull\t3\tnull\tnull\t56860\t2018-12-19 07:01:18.125\t2018-12-27 07:01:22.025\n16431501\t13543\t31703\t3.55\tnull\tnull\tnull\t4.65\tnull\tnull\tnull\tnull\t2018-12-16 00:00:00\t3907\t3.17\tnull\t2026471873\t8.91\tnull\tnull\t3\tnull\tnull\t53900\t2018-12-18 07:01:17.771\t2019-01-15 07:01:29.165\n16407839\t13543\t31703\t3.85\t30\tnull\tnull\t4.67\t40\tnull\tnull\tnull\t2018-12-16 00:00:00\t3907\t3.16\tnull\t2026471841\t8.92\tnull\t18000\t2\tnull\tnull\t50300\t2018-12-17 07:01:17.209\t2019-01-15 07:01:29.157\n16431095\t13543\t31703\t3.7\t80\tnull\tnull\t4.68\t60\tnull\tnull\tnull\t2018-12-16 00:00:00\t3907\t3.19\tnull\t2026471810\t8.96\t200\t7000\t1\tnull\tnull\t54360\t2018-12-18 07:01:17.765\t2019-01-15 07:01:29.153\n16431096\t13543\t31703\t3.7\tnull\tnull\tnull\t4.67\tnull\tnull\tnull\tnull\t2018-12-16 00:00:00\t3907\t3.18\tnull\t2026471811\t8.94\tnull\tnull\t1\tnull\tnull\t54040\t2018-12-18 07:01:17.766\t2019-01-15 07:01:29.155"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"result-alert alert-warning\" role\u003d\"alert\"\u003e\u003cbutton type\u003d\"button\" class\u003d\"close\" data-dismiss\u003d\"alert\" aria-label\u003d\"Close\"\u003e\u003cspan aria-hidden\u003d\"true\"\u003e\u0026times;\u003c/span\u003e\u003c/button\u003e\u003cstrong\u003eOutput is truncated\u003c/strong\u003e to 102400 bytes. Learn more about \u003cstrong\u003eZEPPELIN_INTERPRETER_OUTPUT_LIMIT\u003c/strong\u003e\u003c/div\u003e"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.11.221:4040/jobs/job?id\u003d18"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1551959917936_-173522842",
       "id": "20190306-164757_2044991511",
       "dateCreated": "2019-03-07 12:58:37.936",
-      "status": "READY",
-      "errorMessage": "",
+      "dateStarted": "2019-03-07 13:18:45.745",
+      "dateFinished": "2019-03-07 13:18:46.004",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.936",
+      "dateUpdated": "2019-03-07 13:18:46.045",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -662,13 +1231,13 @@
       "jobName": "paragraph_1551959917936_-739013953",
       "id": "20190306-164756_1206565381",
       "dateCreated": "2019-03-07 12:58:37.936",
-      "status": "READY",
+      "status": "FINISHED",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "user": "anonymous",
-      "dateUpdated": "2019-03-07 12:58:37.937",
+      "dateUpdated": "2019-03-07 13:18:46.100",
       "config": {
         "lineNumbers": true,
         "editorSetting": {
@@ -691,7 +1260,7 @@
       "jobName": "paragraph_1551959917936_-560273248",
       "id": "20190306-164755_1492577635",
       "dateCreated": "2019-03-07 12:58:37.936",
-      "status": "READY",
+      "status": "FINISHED",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     }
