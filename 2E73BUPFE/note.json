@@ -1,0 +1,69 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.{DataFrame, SparkSession}\n\nimport scala.collection.mutable.Map\nimport java.io.File\n\n\nclass DataLoader(spark: SparkSession) {\n  /**\n    * Returns all files from a directory.\n    *\n    * @param directoryPath path to a directory where files are stored\n    * @return list of absolute file paths in the directory\n    */\n  def getListOfFiles(directoryPath: String): List[String] \u003d {\n    val file \u003d new File(directoryPath)\n    file\n      .listFiles\n      .filter(_.isFile)\n      .map(_.getPath).toList\n  }\n\n  /**\n    * Reads all CSV files in a directory passed as the first parameter\n    * Returns MutableMap containing file name as a key and data represented by a data frame\n    *\n    * @param directoryPath path to a directory where files are stored\n    * @param separator string that separates the data in a CSV file\n    * @param header true if the header is present in a file\n    * @return mutable Map where keys are file names and values are DataFrames\n    */\n  def readAllCsvFiles(directoryPath: String, separator: String, header: Boolean \u003d true): Map[String, DataFrame]  \u003d {\n    var dataFrameMap \u003d Map[String, DataFrame]()\n    // iteriraj po svim csv datotekama\n    for (filePath \u003c- getListOfFiles(directoryPath)) {\n      if (filePath.split(\u0027/\u0027).last.split(\u0027.\u0027)(1) \u003d\u003d \"csv\") {\n        val fileName \u003d filePath.split(\u0027/\u0027).last.split(\u0027.\u0027)(0)\n        println(fileName)\n        dataFrameMap +\u003d (fileName -\u003e spark.read.option(\"header\", header).option(\"sep\", separator).option(\"inferSchema\", true).csv(filePath).withColumnRenamed(\"_c0\", \"Index\"))\n\n      }\n    }\n    dataFrameMap\n  }\n}\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:40:13.514",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.{DataFrame, SparkSession}\nimport scala.collection.mutable.Map\nimport java.io.File\ndefined class DataLoader\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477187864_-1035501833",
+      "id": "20190313-123947_1095586297",
+      "dateCreated": "2019-03-13 12:39:47.865",
+      "dateStarted": "2019-03-13 12:40:13.520",
+      "dateFinished": "2019-03-13 12:40:13.899",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477208283_949289858",
+      "id": "20190313-124008_354152551",
+      "dateCreated": "2019-03-13 12:40:08.283",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "MM-5/DataProcessor",
+  "id": "2E73BUPFE",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

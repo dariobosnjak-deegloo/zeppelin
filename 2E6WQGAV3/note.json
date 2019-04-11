@@ -1,0 +1,179 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Imports",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:43:21.557",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477377425_-2147096762",
+      "id": "20190313-124257_433979511",
+      "dateCreated": "2019-03-13 12:42:57.425",
+      "dateStarted": "2019-03-13 12:43:21.568",
+      "dateFinished": "2019-03-13 12:43:21.574",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import java.sql.Date\nimport java.util.Calendar\n\nimport DataLoader, DataProcessor\nimport org.apache.spark.sql.types.DateType\nimport org.apache.spark.sql.{DataFrame, SparkSession}\n\nimport scala.collection.mutable.ArrayBuffer",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:43:33.932",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477385554_-146922429",
+      "id": "20190313-124305_1521584579",
+      "dateCreated": "2019-03-13 12:43:05.554",
+      "dateStarted": "2019-03-13 12:43:33.943",
+      "dateFinished": "2019-03-13 12:43:33.948",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Raw data",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:42:49.837",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477091344_-757768691",
+      "id": "20190313-123811_2084013199",
+      "dateCreated": "2019-03-13 12:38:11.344",
+      "dateStarted": "2019-03-13 12:42:49.838",
+      "dateFinished": "2019-03-13 12:42:49.845",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:42:51.952",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477371951_1932591005",
+      "id": "20190313-124251_1627137909",
+      "dateCreated": "2019-03-13 12:42:51.951",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:42:53.758",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477373758_-37185038",
+      "id": "20190313-124253_572793322",
+      "dateCreated": "2019-03-13 12:42:53.758",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:42:53.017",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477373016_-1643275198",
+      "id": "20190313-124253_1168589166",
+      "dateCreated": "2019-03-13 12:42:53.016",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:42:49.830",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477369829_3898912",
+      "id": "20190313-124249_2035661500",
+      "dateCreated": "2019-03-13 12:42:49.830",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "~Trash/MM-5/Feature-engineering",
+  "id": "2E6WQGAV3",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

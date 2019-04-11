@@ -1,0 +1,69 @@
+{
+  "paragraphs": [
+    {
+      "text": "import java.sql.Date\nimport java.time.Period\nimport java.util.concurrent.TimeUnit\n\nimport org.apache.spark.sql.expressions.{Window}\nimport org.apache.spark.sql.{DataFrame, functions \u003d\u003e F}\n\n/**\n  * Offers methods for data processing.\n  */\nclass DataProcessor extends Serializable {\n\n  // TODO - methods for dealing with null values - this varies from column to column\n\n\n  /**\n    * Returns DataFrame with rows that have date in between two given dates.\n    *\n    * @param df          data\n    * @param dateColName column name used for filtering by date\n    * @param dateFrom    first date (inclusive) in filtered data\n    * @param dateTo      last date (inclusive) in filtered data\n    * @return DataFrame podataka za treniranje\n    */\n  def dateFilter(df: DataFrame, dateColName: String, dateFrom: Date, dateTo: Date): DataFrame \u003d {\n    df.filter(F.col(dateColName) \u003e\u003d F.lit(dateFrom))\n      .filter(F.col(dateColName) \u003c\u003d F.lit(dateTo))\n  }\n\n  /**\n    * Returns new DataFrame that contains lagged column.\n    *\n    * @param df             data\n    * @param offset         lag offset\n    * @param featureColName column to lag\n    * @param orderByColName column used for sorting\n    * @param lagFeatureName column to store the lagged values to\n    * @return DataFrame with lagged values added\n    */\n  def lagSeries(df: DataFrame, offset: Int, featureColName: String, orderByColName: String, lagFeatureName: String): DataFrame \u003d {\n    require(offset \u003e 0)\n    val window \u003d Window.orderBy(orderByColName)\n    val dfLag \u003d df.withColumn(lagFeatureName, F.lag(featureColName, offset, 0).over(window))\n\n    dfLag\n  }\n\n\n  val addDaysToDate \u003d (date: Date, daysToAdd: Int) \u003d\u003e new Date(date.getTime + TimeUnit.DAYS.toMillis(daysToAdd)): Date\n\n  val addDaysUdf \u003d F.udf(\n    (date: Date, daysToAdd: Int) \u003d\u003e {\n      if (daysToAdd.isNaN)\n        None\n      else\n        Some(addDaysToDate(date, daysToAdd))\n    }: Option[Date])\n\n  val datesRangeUdf \u003d F.udf(\n    (ddat: Date, dryEndDate: Date) \u003d\u003e {\n      var returnVal: Option[Seq[Date]] \u003d Option(null)\n      if (ddat !\u003d null \u0026\u0026 dryEndDate !\u003d null) {\n        val numOfDays: Int \u003d Period.between(ddat.toLocalDate, dryEndDate.toLocalDate).getDays\n        returnVal \u003d Some(for(daysToAdd \u003c- 0 to numOfDays) yield addDaysToDate(ddat, daysToAdd))\n      }\n      returnVal\n    } : Option[Seq[Date]]\n  )\n\n  val countCowsOnDate \u003d (date: Date, profileDf: DataFrame) \u003d\u003e {\n    profileDf.filter(F.col(\"EDAT\") \u003c\u003d date \u0026\u0026 F.col(\"ARDAT\") \u003e\u003d date)\n      .select(\"UniqueIdentifier\")\n      //.distinct()\n      .count()\n  }\n}\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 12:40:45.643",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import java.sql.Date\nimport java.time.Period\nimport java.util.concurrent.TimeUnit\nimport org.apache.spark.sql.expressions.Window\nimport org.apache.spark.sql.{DataFrame, functions\u003d\u003eF}\ndefined class DataProcessor\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477118902_-429273164",
+      "id": "20190313-123838_637050199",
+      "dateCreated": "2019-03-13 12:38:38.902",
+      "dateStarted": "2019-03-13 12:40:45.650",
+      "dateFinished": "2019-03-13 12:40:46.542",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1552477245643_1768275123",
+      "id": "20190313-124045_1559556517",
+      "dateCreated": "2019-03-13 12:40:45.643",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "MM-5/DataLoader",
+  "id": "2E4W9WZ6J",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
